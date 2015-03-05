@@ -1,0 +1,7 @@
+/tags
+pws.vbs
+*.exe
+*.obj
+*.pdb
+*.ipch
+*/Debug

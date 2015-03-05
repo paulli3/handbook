@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Behavior">
+      <UniqueIdentifier>{143c2ddf-8f75-4d66-87d0-78593b5bd46a}</UniqueIdentifier>
+      <SourceControlFiles>False</SourceControlFiles>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="htmlayout head">
+      <UniqueIdentifier>{f0b3a49d-a15e-42d5-b9e2-fd7706bedf73}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\handbook.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_accesskeys.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_actions.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_chart.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_clock.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_clock_graphin.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_collapsible_by_icon.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_command.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_editable_select.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_expandable_list.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_font_size.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_form.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_grid.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_gripper.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_hover.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_hyperlink.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_lb_dialog.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_path.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_popup.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_rtc_current_objects.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_scroller.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_select_buddy.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_select_checkmark.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_shellicon.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_sizer.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_splitter.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_tabs.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\behavior_virtual_grid.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\behaviors\data_source_behavior.cpp">
+      <Filter>Behavior</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\handbook.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\atlhtmlayout.h">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\atlhtmlayouthost.h">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aux-cvt.h">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aux-slice.h">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\htmlayout.h">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\htmlayout_aux.h">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\htmlayout_behavior.h">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\htmlayout_behavior.hpp">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\htmlayout_canvas.hpp">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\htmlayout_controls.hpp">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\htmlayout_dialog.hpp">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\htmlayout_dom.h">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\htmlayout_dom.hpp">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\htmlayout_graphin.h">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\htmlayout_notifications.hpp">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\htmlayout_queue.h">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\htmlayout_value.hpp">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\htmlayout_x.h">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\htmlite.h">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\htmprint.h">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\mm_file.h">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wtl_htmlayout.h">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wtl_htmlayouthost.h">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wtl_htmlayoutvalues.h">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wtl_htmlayoutx.h">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wtl_htmlpopup.h">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wtl_value.h">
+      <Filter>htmlayout head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\behaviors\behavior_aux.h">
+      <Filter>Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\behaviors\notifications.h">
+      <Filter>Behavior</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\res\handbook.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="..\..\res\smallhandbook.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\res\handbook.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
