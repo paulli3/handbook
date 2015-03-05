@@ -43,7 +43,13 @@ protected:
   static  HINSTANCE         hinstance;
 
 
+  virtual BOOL on_script_call(HELEMENT he, LPCSTR name, UINT argc, json::value* argv, json::value& retval)
+  {
+	  MessageBox(NULL, TEXT("1"), TEXT("2"), 0);
+	  retval = json::value(L"browse.exe");
 
+	  return true;
+  }
 
 };
 
