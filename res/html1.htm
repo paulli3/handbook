@@ -1,10 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     </head>
     <style>
-		body,ul,ol,dl,dd,li,div,h1,h2,h3,th,strong{margin:0;padding:0;list-style:none;font-size:12px; font-weight:normal}
+        @const BORDER_COLOR : red;
+        body,ul,ol,dl,dd,li,div,h1,h2,h3,th,strong {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-size: 12px;
+            font-weight: normal;
+        }
     	//body,legend{color:#000;background:#edeae4}/*background:transparent*/
 		
 		table,th,td{ border-collapse:collapse;}
@@ -12,8 +19,14 @@
 		.search fieldset{margin-left:1%;}
 		.main{padding:5px 10px;height:100%%}
 		input{}
-		
-		.body{flow:horizontal;margin-top:10px;height:1*; background-image:url(allbg.png);border:1px solid red}
+
+        .body {
+            flow: horizontal;
+            margin-top: 10px;
+            height: 1*;
+            background-image: url(allbg.png);
+            border: 1px solid @BORDER_COLOR;
+        }
 		dt,th{ height:16px; background:url(allbg.png) repeat-x 0 0;border-bottom:1px solid #c2bfb8}
 		dt{ text-align:center;}
 		dl{ border:1px solid #7b7b78;margin-left:0 1%}
@@ -24,11 +37,25 @@
 			horizontal-scrollbar: my-h-scrollbar;
 			height:100%%;
 		}
-		
-        dl li {height:22px; color:#000;vertical-align:middle;text-indent:10px; cursor:pointer;background:#FFF;border-top:1px solid #dadada;
-            //background:url(allbg.png) repeat-x 0 0;
-        }
-		dl li:hover{ background:#EFEFEF;behavior:clickable;}
+
+            dl dd div {
+                height: 32px;
+                color: #000;
+                vertical-align: middle;
+                text-indent: 10px;
+                cursor: pointer;
+                background: #FFF;
+                border-top: 1px solid #dadada;
+                color:red;
+                border: 1px solid @BORDER_COLOR;
+            }
+            dl dd {
+                overflow: auto scroll-manner( page-animation:true, step-animation:false, step:auto, wheel-animation:false );
+            }
+        dl dd div:hover {
+                background: #EFEFEF;
+                behavior: clickable;
+            }
 		//dl dd{ background:#FFF; }
 		
 		table{width:100%;}
@@ -173,39 +200,10 @@
             <div .body>
             	<dl .left>
                 	<dt>ROOT</dt>
-                    <dd>
-                    	<ul id="rootbox">
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-							<li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li><li idd="2">MFC</li>
-                        </ul>
+                    <dd style="color:red">
+                        
+                            <div value=0 selected>not specified</div><div value=1>Afghanistan</div><div value=2>Albania</div><div value=3>Algeria</div><div value=4>American Samoa</div><div value=5>Andorra</div><div value=6>Angola</div><div value=7>Anguilla</div><div value=8>Antarctica</div><div value=9>Antigua And Barbuda</div><div value=10>Argentina</div><div value=11>Armenia</div><div value=12>Aruba</div><div value=13>Australia</div><div value=14>Austria</div><div value=15>Azerbaijan</div><div value=16>Bahamas</div><div value=17>Bahrain</div><div value=18>Bangladesh</div><div value=19>Barbados</div><div value=20>Belarus</div><div value=21>Belgium</div><div value=22>Belize</div><div value=23>Benin</div><div value=24>Bermuda</div><div value=25>Bhutan</div><div value=26>Bolivia</div><div value=27>Bosnia and Herzegovina</div><div value=28>Botswana</div><div value=29>Bouvet Island</div><div value=30>Brazil</div><div value=31>British Indian Ocean Territory</div><div value=32>Brunei Darussalam</div><div value=33>Bulgaria</div><div value=34>Burkina Faso</div><div value=35>Burundi</div><div value=36>Cambodia</div><div value=37>Cameroon</div><div value=38>Canada</div><div value=39>Cape Verde</div><div value=40>Cayman Islands</div><div value=41>Central African Republic</div><div value=42>Chad</div><div value=43>Chile</div><div value=44>China</div><div value=45>Christmas Island</div><div value=46>Cocos (Keeling) Islands</div><div value=47>Colombia</div><div value=48>Comoros</div><div value=49>Congo</div><div value=50>Congo, Democratic Republic</div><div value=51>Cook Islands</div><div value=52>Costa Rica</div><div value=53>Cote d'Ivoire</div><div value=54>Croatia</div><div value=55>Cuba</div><div value=56>Cyprus</div><div value=57>Czech Republic</div><div value=58>Denmark</div><div value=59>Djibouti</div><div value=60>Dominica</div><div value=61>Dominican Republic</div><div value=62>East Timor</div><div value=63>Ecuador</div><div value=64>Egypt</div><div value=65>El Salvador</div><div value=66>Equatorial Guinea</div><div value=67>Eritrea</div><div value=68>Estonia</div><div value=69>Ethiopia</div><div value=70>Falkland Islands</div><div value=71>Faroe Islands</div><div value=72>Fiji</div><div value=73>Finland</div><div value=74>France</div><div value=75>French Guiana</div><div value=76>French Polynesia</div><div value=77>French Southern Territories</div><div value=78>Gabon</div><div value=79>Gambia</div><div value=80>Georgia</div><div value=81>Germany</div><div value=82>Ghana</div><div value=83>Gibraltar</div><div value=84>Greece</div><div value=85>Greenland</div><div value=86>Grenada</div><div value=87>Guadeloupe</div><div value=88>Guam</div><div value=89>Guatemala</div><div value=90>Guinea</div><div value=91>Guinea-Bissau</div><div value=92>Guyana</div><div value=93>Haiti</div><div value=94>Heard and Mc Donald Islands</div><div value=95>Holy See - Vatican City</div><div value=96>Honduras</div><div value=97>Hong Kong</div><div value=98>Hungary</div><div value=99>Iceland</div><div value=100>India</div><div value=101>Indonesia</div><div value=102>Iran, Islamic Republic</div><div value=103>Iraq</div><div value=104>Ireland</div><div value=105>Israel</div><div value=106>Italy</div><div value=107>Jamaica</div><div value=108>Japan</div><div value=109>Jordan</div><div value=110>Kazakstan</div><div value=111>Kenya</div><div value=112>Kiribati</div><div value=113>Korea, Peoples Republic</div><div value=114>Korea, Republic of</div><div value=115>Kuwait</div><div value=116>Kyrgyzstan</div><div value=117>Lao People's Republic</div><div value=118>Latvia</div><div value=119>Lebanon</div><div value=120>Lesotho</div><div value=121>Liberia</div><div value=122>Libyan Arab Jamahiriya</div><div value=123>Liechtenstein</div><div value=124>Lithuania</div><div value=125>Luxembourg</div><div value=126>Macau</div><div value=127>Macedonia</div><div value=128>Madagascar</div><div value=129>Malawi</div><div value=130>Malaysia</div><div value=131>Maldives</div><div value=132>Mali</div><div value=133>Malta</div><div value=134>Marshall Islands</div><div value=135>Martinique</div><div value=136>Mauritania</div><div value=137>Mauritius</div><div value=138>Mayotte</div><div value=139>Mexico</div><div value=140>Micronesia, Federated States</div><div value=141>Moldova, Republic of</div><div value=142>Monaco</div><div value=143>Mongolia</div><div value=144>Montserrat</div><div value=145>Morocco</div><div value=146>Mozambique</div><div value=147>Myanmar</div><div value=148>Namibia</div><div value=149>Nauru</div><div value=150>Nepal</div><div value=151>Netherlands</div><div value=152>Netherlands Antilles</div><div value=153>New Caledonia</div><div value=154>New Zealand</div><div value=155>Nicaragua</div><div value=156>Niger</div><div value=157>Nigeria</div><div value=158>Niue</div><div value=159>Norfolk Island</div><div value=160>Northern Mariana Islands</div><div value=161>Norway</div><div value=162>Oman</div><div value=163>Pakistan</div><div value=164>Palau</div><div value=165>Palestinian Territory</div><div value=166>Panama</div><div value=167>Papua New Guinea</div><div value=168>Paraguay</div><div value=169>Peru</div><div value=170>Philippines</div><div value=171>Pitcairn</div><div value=172>Poland</div><div value=173>Portugal</div><div value=174>Puerto Rico</div><div value=175>Qatar</div><div value=176>Reunion</div><div value=177>Romania</div><div value=178>Russian Federation</div><div value=179>Rwanda</div><div value=180>St. Helena</div><div value=181>Saint Kitts and Nevis</div><div value=182>Saint Lucia</div><div value=183>St. Pierre and Miquelon</div><div value=184>Saint Vincent - Grenadines</div><div value=185>Samoa (Independent)</div><div value=186>San Marino</div><div value=187>Sao Tome and Principe</div><div value=188>Saudi Arabia</div><div value=189>Senegal</div><div value=190>Seychelles</div><div value=191>Sierra Leone</div><div value=192>Singapore</div><div value=193>Slovakia</div><div value=194>Slovenia</div><div value=195>Solomon Islands</div><div value=196>Somalia</div><div value=197>South Africa</div><div value=198>South Georgia - South Sandwich</div><div value=199>Spain</div><div value=200>Sri Lanka</div><div value=201>Sudan</div><div value=202>Suriname</div><div value=203>Svalbard - Jan Mayen Islands</div><div value=204>Swaziland</div><div value=205>Sweden</div><div value=206>Switzerland</div><div value=207>Syrian Arab Republic</div><div value=208>Taiwan</div><div value=209>Tajikistan</div><div value=210>Tanzania</div><div value=211>Thailand</div><div value=212>Togo</div><div value=213>Tokelau</div><div value=214>Tonga</div><div value=215>Trinidad and Tobago</div><div value=216>Tunisia</div><div value=217>Turkey</div><div value=218>Turkmenistan</div><div value=219>Turks and Caicos Islands</div><div value=220>Tuvalu</div><div value=221>Uganda</div><div value=222>Ukraine</div><div value=223>United Arab Emirates</div><div value=224>United Kingdom</div><div value=225>United States</div><div value=226>United States Minor Islands</div><div value=227>Uruguay</div><div value=228>Uzbekistan</div><div value=229>Vanuatu</div><div value=230>Venezuela</div><div value=231>Viet Nam</div><div value=232>Virgin Islands (British)</div><div value=233>Virgin Islands (U.S.)</div><div value=234>Wallis and Futuna Islands</div><div value=235>Western Sahara</div><div value=236>Yemen</div><div value=237>Yugoslavia</div><div value=238>Zambia</div><div value=239>Zimbabwe</div>
+                        
                     </dd>
                 </dl>
             	<dl .right>
@@ -267,10 +265,9 @@
     {
       border-color:red;
     }
-    
-    div#second.list 
-    {
-      overflow:auto scroll-manner( page-animation:true, step-animation:false, step:auto, wheel-animation:false );
+
+    div#second.list {
+        overflow: auto scroll-manner( page-animation:true, step-animation:false, step:auto, wheel-animation:false );
     }
 	
 /* style block defining horizontal scrollbar */

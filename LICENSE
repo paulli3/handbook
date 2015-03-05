@@ -338,3 +338,7 @@ consider it more useful to permit linking proprietary applications with the
 library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.
 
+
+call D:\code\c\learn\htmlayout-vc\upload.bat push  "https://github.com/paulli3/handbook master"
+call D:\code\c\learn\htmlayout-vc\upload.bat pull  "https://github.com/paulli3/handbook master"
+

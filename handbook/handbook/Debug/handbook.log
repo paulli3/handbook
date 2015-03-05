@@ -1,5 +1,2 @@
-﻿  handbook.cpp
-d:\code\c\learn\htmlayout-vc\src\handbook.cpp(261): warning C4101: “ps”: 未引用的局部变量
-d:\code\c\learn\htmlayout-vc\src\handbook.cpp(262): warning C4101: “hdc”: 未引用的局部变量
-C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(1186,5): warning MSB8012: TargetPath(D:\code\c\learn\htmlayout-vc\handbook\Debug\handbook.exe) does not match the Linker's OutputFile property value (D:\code\c\learn\htmlayout-vc\bin\handbook.exe). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(1186,5): warning MSB8012: TargetPath(D:\code\c\learn\htmlayout-vc\handbook\Debug\handbook.exe) does not match the Linker's OutputFile property value (D:\code\c\learn\htmlayout-vc\bin\handbook.exe). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
   handbook.vcxproj -> D:\code\c\learn\htmlayout-vc\handbook\Debug\handbook.exe

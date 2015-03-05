@@ -173,6 +173,7 @@
     <ClCompile Include="..\..\src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\atlhtmlayout.h" />
@@ -205,6 +206,7 @@
     <ClInclude Include="..\..\include\mm_file.h" />
     <ClInclude Include="..\..\include\resource.h" />
     <ClInclude Include="..\..\include\stdafx.h" />
+    <ClInclude Include="..\..\include\window.h" />
     <ClInclude Include="..\..\include\wtl_htmlayout.h" />
     <ClInclude Include="..\..\include\wtl_htmlayouthost.h" />
     <ClInclude Include="..\..\include\wtl_htmlayoutvalues.h" />
@@ -218,6 +220,11 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\res\handbook.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\res\html1.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -21,6 +21,9 @@
     <Filter Include="htmlayout head">
       <UniqueIdentifier>{f0b3a49d-a15e-42d5-b9e2-fd7706bedf73}</UniqueIdentifier>
     </Filter>
+    <Filter Include="HTML">
+      <UniqueIdentifier>{d2393a67-c6d3-4b83-8494-162d00bf55b5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -115,6 +118,9 @@
     </ClCompile>
     <ClCompile Include="..\..\include\behaviors\data_source_behavior.cpp">
       <Filter>Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\window.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -214,6 +220,9 @@
     <ClInclude Include="..\..\include\behaviors\notifications.h">
       <Filter>Behavior</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\window.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\res\handbook.ico">
@@ -227,5 +236,10 @@
     <ResourceCompile Include="..\..\res\handbook.rc">
       <Filter>资源文件</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\res\html1.htm">
+      <Filter>HTML</Filter>
+    </None>
   </ItemGroup>
 </Project>

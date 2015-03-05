@@ -35,8 +35,7 @@
 
 #define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS	// some CString constructors will be explicit
 
-#include <atlbase.h>
-#include <atlstr.h>
+
 
 #include <commdlg.h>
 
@@ -46,3 +45,5 @@
 #include "htmlayout.h"
 #include "htmlayout_dom.hpp"
 
+#include "window.h"
+#include "resource.h"
