@@ -13,6 +13,7 @@
 #define IDR_MAINFRAME                   128
 #define IDC_STATIC                      -1
 
+#define IDR_ROOT_EDIT				200
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED

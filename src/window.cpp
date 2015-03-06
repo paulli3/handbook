@@ -19,7 +19,6 @@ namespace htmlayout
 	WNDCLASSEX wcex = { 0 };
 	// Initialize global strings
 	wcex.cbSize = sizeof(WNDCLASSEX);
-
 	wcex.style = CS_HREDRAW | CS_VREDRAW;
 	wcex.lpfnWndProc = (WNDPROC)win_proc;
 	wcex.cbClsExtra = 0;
@@ -98,7 +97,11 @@ namespace htmlayout
     }
     return pw;
   }
-
+  /*加载完成后执行*/
+  LRESULT window::on_document_complete() { 
+	  //MessageBoxA(NULL, "1", "333", 0); 
+	  return 0; 
+  }
   void window::set_caption( const wchar_t* text )
   {
     if(text)
@@ -273,5 +276,21 @@ namespace htmlayout
      }
      return DefWindowProcW(hwnd, message, wParam, lParam);
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

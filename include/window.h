@@ -1,8 +1,14 @@
 #ifndef __window_h__
 #define __window_h__
 
-#include "htmlayout.h"
+#include "stdafx.h"
 #include <windowsx.h>
+#include "action.hpp"
+
+
+
+
+
 
 namespace htmlayout
 {
@@ -28,7 +34,9 @@ public:
 
   static  ATOM              register_class(HINSTANCE hInstance);
 protected:
-  window(): event_handler(HANDLE_BEHAVIOR_EVENT) {}
+	//unsigned(-1)    handler all
+	//HANDLE_BEHAVIOR_EVENT  handler behaver
+	window() : event_handler(HANDLE_ALL) {}
 
   int       hit_test( int x, int y );
   HELEMENT  root();
@@ -36,7 +44,7 @@ protected:
   bool      is_maximized() const;
 
   virtual BOOL  on_event (HELEMENT he, HELEMENT target, BEHAVIOR_EVENTS type, UINT_PTR reason );
-
+  virtual LRESULT on_document_complete();
   static  void              self(HWND hWnd, window* inst) { ::SetWindowLongPtr(hWnd,GWLP_USERDATA, LONG_PTR(inst)); }
   static  LRESULT CALLBACK  win_proc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
@@ -45,11 +53,19 @@ protected:
 
   virtual BOOL on_script_call(HELEMENT he, LPCSTR name, UINT argc, json::value* argv, json::value& retval)
   {
-	  MessageBox(NULL, TEXT("1"), TEXT("2"), 0);
-	  retval = json::value(L"browse.exe");
+// 	  htmlayout::debug_output_console dc;
+// 	  dc.printf("call of %s()\n", name);
+	  if (aux::streq(name, "show_root_list"))
+	  {
+		  XCALL_ACTION::show_root_list(he, argv[0], argv[1]);
+	  }
+
+
+
 
 	  return true;
   }
+
 
 };
 

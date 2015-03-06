@@ -99,6 +99,7 @@ namespace htmlayout
     // handle CSSS! script calls
     virtual BOOL handle_script_call (HELEMENT he, XCALL_PARAMS& params ) 
       {
+		//OutputDebugStringA(params.method_name);
         return on_script_call(he, params.method_name, params.argc, params.argv, params.retval );
       }
 
@@ -107,6 +108,11 @@ namespace htmlayout
     // see enum BEHAVIOR_EVENTS
     virtual BOOL handle_event (HELEMENT he, BEHAVIOR_EVENT_PARAMS& params ) 
       { 
+// 									 LPCSTR  mtype = "";
+// 									 HTMLayoutGetElementType(he, &mtype);
+// 									 std::string a(mtype);
+// 									 a = "===" + a + "===";
+// 									 OutputDebugStringA(a.c_str());
         return on_event(he, params.heTarget, (BEHAVIOR_EVENTS)params.cmd, params.reason );
       }
 
@@ -163,11 +169,13 @@ namespace htmlayout
     // ElementWventProc implementeation
     static BOOL CALLBACK  element_proc(LPVOID tag, HELEMENT he, UINT evtg, LPVOID prms )
     {
+		
       event_handler* pThis = static_cast<event_handler*>(tag);
       if( pThis ) switch( evtg )
         {
           case HANDLE_INITIALIZATION:
             {
+
               INITIALIZATION_PARAMS *p = (INITIALIZATION_PARAMS *)prms;
               if(p->cmd == BEHAVIOR_DETACH)
                 pThis->detached(he);
@@ -205,7 +213,7 @@ namespace htmlayout
     }
 
     UINT             subscribed_to;
-  };
+  }; //struct end
 
   // "manually" attach event_handler proc to the DOM element 
   inline void attach_event_handler(HELEMENT he, event_handler* p_event_handler, UINT subscription = HANDLE_ALL )
@@ -221,6 +229,7 @@ namespace htmlayout
   // "manually" attach event_handler proc to the window 
   inline void attach_event_handler(HWND hwndLayout, event_handler* p_event_handler, UINT subscription = HANDLE_ALL )
   {
+	OutputDebugStringA("====attach_event_handler====");
     HTMLayoutWindowAttachEventHandler(hwndLayout, &event_handler::element_proc, p_event_handler, subscription);
   }  
   inline void detach_event_handler(HWND hwndLayout, event_handler* p_event_handler )

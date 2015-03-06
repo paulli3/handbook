@@ -59,7 +59,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>../../lib/HTMLayout.lib;dwmapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../lib/HTMLayout.lib;../../lib/SQLITE3.lib;dwmapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>../../lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <OutputFile>../../bin/$(TargetName)$(TargetExt)</OutputFile>
     </Link>
@@ -169,6 +169,7 @@
     <ClCompile Include="..\..\include\behaviors\data_source_behavior.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\src\debug.cpp" />
     <ClCompile Include="..\..\src\handbook.cpp" />
     <ClCompile Include="..\..\src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -176,6 +177,7 @@
     <ClCompile Include="..\..\src\window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\action.hpp" />
     <ClInclude Include="..\..\include\atlhtmlayout.h" />
     <ClInclude Include="..\..\include\atlhtmlayouthost.h" />
     <ClInclude Include="..\..\include\aux-cvt.h" />
@@ -186,6 +188,7 @@
     <ClInclude Include="..\..\include\behaviors\notifications.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="..\..\include\debug.h" />
     <ClInclude Include="..\..\include\handbook.h" />
     <ClInclude Include="..\..\include\htmlayout.h" />
     <ClInclude Include="..\..\include\htmlayout_aux.h" />
@@ -205,6 +208,8 @@
     <ClInclude Include="..\..\include\htmprint.h" />
     <ClInclude Include="..\..\include\mm_file.h" />
     <ClInclude Include="..\..\include\resource.h" />
+    <ClInclude Include="..\..\include\sql.hpp" />
+    <ClInclude Include="..\..\include\sqlite3.h" />
     <ClInclude Include="..\..\include\stdafx.h" />
     <ClInclude Include="..\..\include\window.h" />
     <ClInclude Include="..\..\include\wtl_htmlayout.h" />

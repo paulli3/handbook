@@ -122,6 +122,9 @@
     <ClCompile Include="..\..\src\window.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\debug.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\handbook.h">
@@ -221,6 +224,18 @@
       <Filter>Behavior</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\window.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\action.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\sql.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\debug.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\sqlite3.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

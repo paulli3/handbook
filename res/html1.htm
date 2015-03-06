@@ -18,13 +18,7 @@
 		.search{flow:horizontal}
 		.search fieldset{margin-left:1%;}
 		.main{padding:5px 10px;height:100%%}
-        input {
-            //value-changed! : self:value= app();
-            assigned! : self:value = application-name();
-        }
-        em#appname {
-            
-        }
+
 
         .body {
             flow: horizontal;
@@ -154,10 +148,16 @@
 		color: #274749;
 		font-size:9pt;
 	}
+
+
+        #showrootlist {
+            click!:show_root_list("#second","db");
+        }
+
     </style>
     <body>
     
-        <em #appname style="color:red;background:#FFF;">111</em>.
+        
 
     <div id="topbar">
       <widget id="icon" type="button"></widget>
@@ -170,7 +170,7 @@
         <div .main>
 			<button id="abc"  action="showdialog:dbedit">dbedit</button>
         	<button id="abc"  action="showdialog:rootedit">rootedit</button>
-			<button id="abc"  action="showRootList:xxx">showRootList</button>
+			<button id="showrootlist" >showRootList</button>
 			<button action="showdialog:rootedit">查看-切换数据库列表</button>
 			<input style=" " type="text" value="" id="value" />
 			<div>

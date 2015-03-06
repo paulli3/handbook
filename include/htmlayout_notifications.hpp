@@ -106,7 +106,9 @@ namespace htmlayout
       }
 
       virtual LRESULT on_data_loaded(LPNMHL_DATA_LOADED pnmld)  { return 0; }
-      virtual LRESULT on_document_complete() { return 0; }
+      virtual LRESULT on_document_complete() { 
+		  return 0;
+	  }
       virtual LRESULT on_document_loaded() { return 0; }
 
       virtual LRESULT on_attach_behavior( LPNMHL_ATTACH_BEHAVIOR lpab )
