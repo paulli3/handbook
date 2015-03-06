@@ -47,3 +47,6 @@
 
 #include "window.h"
 #include "resource.h"
+#include "dlg.h"
+
+

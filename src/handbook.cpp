@@ -1,6 +1,7 @@
 // w7aero.cpp : Defines the entry point for the application.
 //
 
+
 #include "stdafx.h"
 #include "handbook.h"
 
@@ -484,3 +485,4 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 // 	}
 // 	return (INT_PTR)FALSE;
 // }
+

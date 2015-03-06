@@ -226,9 +226,6 @@
     <ClInclude Include="..\..\include\window.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\action.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\sql.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -236,6 +233,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\sqlite3.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dlg.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -254,6 +254,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\res\html1.htm">
+      <Filter>HTML</Filter>
+    </None>
+    <None Include="..\..\res\dbedit.htm">
+      <Filter>HTML</Filter>
+    </None>
+    <None Include="..\..\res\rootedit.htm">
       <Filter>HTML</Filter>
     </None>
   </ItemGroup>

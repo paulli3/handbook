@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 	<head>
     	<title>ROOT</title>
     	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
@@ -52,12 +52,19 @@
 			height:300px;				
 		}
 		html{
-			behavior:accesskeys tests;
+			//behavior:accesskeys tests;
 		}
+            #value {
+                key-on!:key-code() == 13 ? (root_edit(self:value));
+            }
+            button{
+                click!:alert("1222222222222222");
+            }
         </style>
     </head>
 	<body>
     	<div .main>
+            <button>1111</button>
         	<label for="author"><span class="input-prepend" name="aaa">ROOT名称</span></label><input id="value" mtype="rootedit" type="text" value="" accesskey="^S" >
          <!--   <input id="xxx" value="1">
             <input id="yyy" value="2">

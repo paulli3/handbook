@@ -177,7 +177,6 @@
     <ClCompile Include="..\..\src\window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\action.hpp" />
     <ClInclude Include="..\..\include\atlhtmlayout.h" />
     <ClInclude Include="..\..\include\atlhtmlayouthost.h" />
     <ClInclude Include="..\..\include\aux-cvt.h" />
@@ -189,6 +188,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\..\include\debug.h" />
+    <ClInclude Include="..\..\include\dlg.h" />
     <ClInclude Include="..\..\include\handbook.h" />
     <ClInclude Include="..\..\include\htmlayout.h" />
     <ClInclude Include="..\..\include\htmlayout_aux.h" />
@@ -227,7 +227,13 @@
     <ResourceCompile Include="..\..\res\handbook.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\res\dbedit.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
     <None Include="..\..\res\html1.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="..\..\res\rootedit.htm">
       <DeploymentContent>true</DeploymentContent>
     </None>
   </ItemGroup>

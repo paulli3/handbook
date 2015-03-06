@@ -100,6 +100,11 @@ namespace htmlayout
   /*加载完成后执行*/
   LRESULT window::on_document_complete() { 
 	  //MessageBoxA(NULL, "1", "333", 0); 
+	  
+		  HELEMENT he=0;
+		  XCALL_ACTION::show_root_list(he, hwnd, "#second", "db");
+		  return 0;
+	  
 	  return 0; 
   }
   void window::set_caption( const wchar_t* text )
