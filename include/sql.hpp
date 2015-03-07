@@ -57,6 +57,7 @@ class Result
         {
             // Field[std::string(filedName)] = std::string(value);
             Field.add(filedName,value);
+
            return true;
         }
         bool addRow()
@@ -84,6 +85,7 @@ class sql
 {
     private:
         char * errmsg;
+		bool is_connect = false;
         Result  mResult ;
         sql(){};
         sql & operator = (const sql &);
@@ -102,15 +104,17 @@ class sql
         // sql(){}
         bool connect(std::string dbFile)
         {
-            int ret;
+			//if (is_connect)return true;
+			int ret;
             ret = sqlite3_open(dbFile.c_str(),&db);
             if( ret ){   
                 fprintf(stderr,"Can't open database: %s/n", sqlite3_errmsg(db));
                 sqlite3_close(db);
-                //MessageBox(NULL,"connect db error","error",MB_OK);
+                MessageBoxA(NULL,"connect db error","error",MB_OK);
                 return false;   
-            }      
-
+            }
+			ret = true;
+			createTable();
             //DDebug("connect success;");
             return true;
         }
@@ -121,13 +125,12 @@ class sql
         }
         bool query(std::string sql/* ,sqlite3_callback Xcallback  */)
         {
-            //mResult.reset();
+            mResult.reset();
             int ret;
             ret = sqlite3_exec(db,sql.c_str(),&callback,static_cast<void*>(&mResult),&errmsg);
             if (! ret == SQLITE_OK){
                 char d[255];
                 sprintf(d,"query fail! [%s] [%s]",sql.c_str(),sqlite3_errmsg(db));
-                
                 MessageBoxA(NULL,d,"error",MB_OK);
                 //Debug(d);
                 return false;
@@ -151,9 +154,10 @@ class sql
         inline bool createTable()
         {
             std::string sql;
-            sql = "create table if not exists main(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT , content TEXT , create_time INTEGER  )";
+            sql = "create table if not exists main(id INTEGER PRIMARY KEY AUTOINCREMENT, root_id INTEGER ,title TEXT , content TEXT ,mean TEXT , create_time INTEGER  )";
             query(sql);
             sql = "create table if not exists root(id INTEGER PRIMARY KEY AUTOINCREMENT , title TEXT)";
+			query(sql);
             return query(sql);
 
         }

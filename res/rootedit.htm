@@ -51,21 +51,26 @@
 			width:300px;
 			height:300px;				
 		}
-		html{
-			//behavior:accesskeys tests;
-		}
+            html {
+                //behavior:accesskeys tests;
+                
+            }
             #value {
                 key-on!:key-code() == 13 ? (root_edit(self:value));
             }
-            button{
-                click!:alert("1222222222222222");
+            input{
+                padding:5px;
+                height:10px;
+                color:#0094ff;
             }
+           
         </style>
     </head>
 	<body>
     	<div .main>
-            <button>1111</button>
-        	<label for="author"><span class="input-prepend" name="aaa">ROOT名称</span></label><input id="value" mtype="rootedit" type="text" value="" accesskey="^S" >
+            
+        	<label for="author"><span class="input-prepend" name="aaa">ROOT名称</span></label>
+            <input id="value" mtype="rootedit" type="text" value="" >
          <!--   <input id="xxx" value="1">
             <input id="yyy" value="2">
 			<button accesskey="^Q" action="alert:q pressed">777777777777</button>
@@ -83,19 +88,11 @@ This is sample text line #2
 This is sample text line #3
 This is sample text line #4
 				</TEXTAREA>
-				
           <button name="OK" role="default-button" > OK </button>
           -->
         </div>
             
         <br>
-	
-    <!--	<input class="comt-submit" name="submit" type="submit" id="submit" tabindex="5" value="发布评论"> -->
 
-
-
-
-		
-        
     </body>
 </html>

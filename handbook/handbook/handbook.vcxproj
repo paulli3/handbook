@@ -233,6 +233,9 @@
     <None Include="..\..\res\html1.htm">
       <DeploymentContent>true</DeploymentContent>
     </None>
+    <None Include="..\..\res\mainedit.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
     <None Include="..\..\res\rootedit.htm">
       <DeploymentContent>true</DeploymentContent>
     </None>

@@ -97,6 +97,7 @@ END
 
 DEFAULT                 HTML                    "html1.htm"
 IDR_ROOT_EDIT		HTML					"rootedit.htm"
+IDR_MAIN_EDIT		HTML					"mainedit.htm"
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table

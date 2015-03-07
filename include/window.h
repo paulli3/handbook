@@ -27,19 +27,45 @@ namespace XCALL_ACTION
 		std::wstring_convert<std::codecvt_utf8<wchar_t>> conv;
 		return conv.to_bytes(wideStr);
 	}
-
+	/*main list 列表*/
+	void inline show_main_list(HELEMENT he, HWND hwnd, json::value id)
+	{
+		
+		sql * PSQL = &sql::getInstance();
+		PSQL->createTable();
+		Record * precode;
+		
+		PSQL->query("SELECT * FROM main order by id desc");
+		std::string html = "";
+		while ((precode = PSQL->RESCULT()->getone()))
+		{
+			html = html + "<div value=\"" + precode->get("title") + "\">" + ToUTF8(aux::a2w(precode->get("title").c_str())) + "</div>";
+		}
+		const unsigned  char chtml[1020000] = "";
+		strcpy((char*)chtml, html.c_str());
+		htmlayout::dom::element root = he;
+		root = root.root_element(hwnd);
+		htmlayout::dom::element rootList = htmlayout::dom::element(root.find_first(".right"));//id.to_string().c_str()
+		if (rootList.is_valid())
+		{
+			rootList.set_html(chtml, sizeof(chtml));
+		}
+		else{
+			MessageBoxA(NULL, "1", "1", 0);
+		}
+	}
+	/*root list 列表*/
 	void inline show_root_list(HELEMENT he,HWND hwnd, json::value id, json::value db)
 	{
 		sql * PSQL = &sql::getInstance();
 		PSQL->connect("db");
-		PSQL->createTable();
 		Record * precode;
 		PSQL->query("SELECT * FROM root order by id desc");
 
 		std::string html = "";
 		while ((precode = PSQL->RESCULT()->getone()))
 		{
-			html = html + "<li action=\"alert:" + precode->get("id") + "\">" + ToUTF8(aux::a2w(precode->get("title").c_str())) + "</li>";
+			html = html + "<div value=\"" + precode->get("id") + "\">" + ToUTF8(aux::a2w(precode->get("title").c_str())) + "</div>";
 		}
 		
 		const unsigned  char chtml[102000] = "";
@@ -61,11 +87,18 @@ namespace XCALL_ACTION
 	{
 		//::htmlayout::window * a = reinterpret_cast<::htmlayout::window *>(lp);
 		//htmlayout::dom::element btn = he;
-
 		dlg dlg1(hwnd);
-
 		dlg1.show(IDR_ROOT_EDIT);
 	}
+
+	void inline show_main_edit_box(HELEMENT he, json::value id, HWND hwnd)
+	{
+		//::htmlayout::window * a = reinterpret_cast<::htmlayout::window *>(lp);
+		//htmlayout::dom::element btn = he;
+		dlg dlg1(hwnd);
+		dlg1.show(IDR_MAIN_EDIT);
+	}
+
 
 }
 
@@ -118,11 +151,20 @@ protected:
 
 	  if (aux::streq(name, "show_root_list")){
 		  XCALL_ACTION::show_root_list(he,hwnd, argv[0], argv[1]);
-	  }else if (aux::streq(name, "show_root_edit")){
-		  XCALL_ACTION::show_root_edit_box(he,argv[0],hwnd);//static_cast<void *>(this)
+	  }
+	  else if (aux::streq(name, "show_main_list"))
+	  {
+		  XCALL_ACTION::show_main_list(he, hwnd, argv[0]);
+	  }
+	  else if (aux::streq(name, "show_root_edit")){
+		  XCALL_ACTION::show_root_edit_box(he, argv[0], hwnd);//static_cast<void *>(this)
+	  }
+	  else if (aux::streq(name, "show_main_edit")){
+			  XCALL_ACTION::show_main_edit_box(he, argv[0], hwnd);//static_cast<void *>(this)
 	  }else if (aux::streq(name, "alert")){
 		  MessageBox(hwnd, argv[0].to_string().c_str(), TEXT("alert!"), MB_OK);
 	  }
+	 
 	  return true;
   }
 };

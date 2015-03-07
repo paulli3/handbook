@@ -1,0 +1,41 @@
+﻿<html>
+	<head>
+    	<title>ROOT</title>
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+        <style>
+		*{margin:0;padding:0;}
+
+		.main{
+			padding:10px;
+		}
+            richtext {
+                width: 300px;
+                height: 300px;
+            }
+            html {
+                key-on!:key-code()==-2147483635 ? main_edit("here_is_id",$1(input[name=title]):value,$1(input[name=mean]):value,$1(richtext).saveHTML("c:/","emit-all-images"));
+            }
+            
+             input {
+                padding: 5px;
+                height: 10px;
+                color: #0094ff;
+
+            }
+            //key-on!:main_edit($1(input[name=title]):value,$1(input[name=mean]):value,$1(richtext).saveHTML("c:/","emit-all-images"));
+           
+        </style>
+    </head>
+	<body>
+    	<div .main>
+                <table>
+                    <tr><td>title:</td><td><input #title name="title"/></td></tr>
+                    <tr><td>desc:</td><td><input name="mean" /></td></tr>
+                    <tr><td>data:</td><td><richtext allow-clipboard-images></richtext></td></tr>
+                </table>
+        </div>
+            
+        <br>
+
+    </body>
+</html>

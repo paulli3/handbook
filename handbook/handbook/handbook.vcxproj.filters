@@ -262,5 +262,8 @@
     <None Include="..\..\res\rootedit.htm">
       <Filter>HTML</Filter>
     </None>
+    <None Include="..\..\res\mainedit.htm">
+      <Filter>HTML</Filter>
+    </None>
   </ItemGroup>
 </Project>
