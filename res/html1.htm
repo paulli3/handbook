@@ -62,27 +62,32 @@
             click!:show_root_list("#second","db");            
         }
         #showrootedit {
-            click!:show_root_edit("id"),show_root_list("#second","db");
+            click!:show_root_edit("add")=="1" ? show_root_list("#second","db");
         }
         html {
-            key-on!:key-code()==-2147483583 ? show_root_edit("1"); //ctrl + a
-            //key-on !:show_root_edit(key-code());
+            key-on!:key-code()==-2147483583 ? show_root_edit("add")=="1" ? show_root_list("#second","db");
+            //ctrl + a //key-on !:show_root_edit(key-code());
         }
         #showmainedit {
             click!:show_main_edit("1");
         }
         #showmainlist {
-            click!:show_main_list("rootid");
+            click!:show_main_list("#mainbody");
         }
         #test {
             assigned!:alert("1");
             click!:alert(2);
         }
+        #second.list div {
+            behavior: clickable;
+            border: 1px solid red;
+            click!:show_root_edit(self.value ,self:value)=="1" ? show_root_list("#second","db");
+        }
     </style>
     <body>
     
         
-
+        
     <div id="topbar">
       <widget id="icon" type="button"></widget>
       <div id="caption"></div>
@@ -112,7 +117,7 @@
                             <th width="50%%">MEAN</th>
                     
                         </tr>	
-                        <tbody>
+                        <tbody id="mainbody">
                         	<tr>
                                 <td>
                                 1111
@@ -121,9 +126,7 @@
                                 1111
                                 </td>
                             </tr>
-                           
                         </tbody>
-                        
                     </table>
                 </dl>
 				

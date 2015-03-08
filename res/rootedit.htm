@@ -56,7 +56,7 @@
                 
             }
             #value {
-                key-on!:key-code() == 13 ? (root_edit(self:value));
+               // key-on!:key-code() == 13 ? (root_edit(self:value));
             }
             input{
                 padding:5px;
@@ -70,7 +70,11 @@
     	<div .main>
             
         	<label for="author"><span class="input-prepend" name="aaa">ROOT名称</span></label>
-            <input id="value" mtype="rootedit" type="text" value="" >
+            <input id="value" name="rootval" mtype="rootedit" type="text" value="" >
+            <input type="text" style="display:none" name="rootid" value="0"/>
+            <button name="OK" role="default-button" style="display:none"> OK </button>
+            <button name="CANCEL" role="cancel-button" style="display:none"> CANCEL </button>
+            
          <!--   <input id="xxx" value="1">
             <input id="yyy" value="2">
 			<button accesskey="^Q" action="alert:q pressed">777777777777</button>

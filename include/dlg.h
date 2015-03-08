@@ -13,6 +13,11 @@ namespace XCALL_ACTION
 		std::string sval = std::string(aux::w2a(title.to_string().c_str()));
 		sql * PSQL = &sql::getInstance();
 		PSQL->connect("db");
+		htmlayout::dom::element btn = he;
+		
+		//std::wstring w_id = id.to_string().c_str();
+		//w_id = btn.get_attribute("value");
+
 		std::string sql = "INSERT INTO root values(NULL,'" + sval + "') ";
 		PSQL->query(sql);
 		::PostMessage(hwnd, WM_CLOSE, 0, 0);
@@ -100,6 +105,9 @@ class dlg : public htmlayout::dialog
 			}
 			return true;
 		}
+
+
+		
 }
 ;
 
