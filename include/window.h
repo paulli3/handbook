@@ -170,6 +170,14 @@ protected:
 
   virtual BOOL  on_event (HELEMENT he, HELEMENT target, BEHAVIOR_EVENTS type, UINT_PTR reason );
   virtual LRESULT on_document_complete();
+  virtual BOOL on_mouse(HELEMENT he, HELEMENT target, UINT event_type, POINT pt, UINT mouseButtons, UINT keyboardStates) { 
+	  if (event_type == MOUSE_DCLICK)
+	  {
+		  std::wstring a = $D(target).get_value().to_string().c_str();
+		  return false;
+	  }
+	  return FALSE;
+  }
   static  void              self(HWND hWnd, window* inst) { ::SetWindowLongPtr(hWnd,GWLP_USERDATA, LONG_PTR(inst)); }
   static  LRESULT CALLBACK  win_proc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 

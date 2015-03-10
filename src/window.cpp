@@ -107,6 +107,7 @@ namespace htmlayout
 	  
 	  return 0; 
   }
+  
   void window::set_caption( const wchar_t* text )
   {
     if(text)
