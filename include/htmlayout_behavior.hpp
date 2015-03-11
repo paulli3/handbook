@@ -60,6 +60,13 @@ namespace htmlayout
     
     virtual BOOL handle_mouse  (HELEMENT he, MOUSE_PARAMS& params ) 
       { 
+		/*char a[20] = "";
+		sprintf(a, "%d", params.cmd);
+		if (params.cmd != 2 && params.cmd != 32770){
+			OutputDebugStringA(a);
+		}
+		*/
+
         return on_mouse( he, params.target, params.cmd, params.pos, params.button_state, params.alt_state ); 
       }
     virtual BOOL handle_key    (HELEMENT he, KEY_PARAMS& params ) 
@@ -171,6 +178,12 @@ namespace htmlayout
     {
 		
       event_handler* pThis = static_cast<event_handler*>(tag);
+
+ 									 /*LPCSTR  mtype = "";
+ 									 HTMLayoutGetElementType(he, &mtype);
+ 									 std::string a(mtype);
+ 									 a = "===" + a + "===";*/
+									  
       if( pThis ) switch( evtg )
         {
           case HANDLE_INITIALIZATION:

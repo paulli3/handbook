@@ -171,6 +171,7 @@ protected:
   virtual BOOL  on_event (HELEMENT he, HELEMENT target, BEHAVIOR_EVENTS type, UINT_PTR reason );
   virtual LRESULT on_document_complete();
   virtual BOOL on_mouse(HELEMENT he, HELEMENT target, UINT event_type, POINT pt, UINT mouseButtons, UINT keyboardStates) { 
+	  showDebug(event_type);
 	  if (event_type == MOUSE_DCLICK)
 	  {
 		  std::wstring a = $D(target).get_value().to_string().c_str();

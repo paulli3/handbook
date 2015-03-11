@@ -70,7 +70,7 @@ namespace htmlayout
 	
 //    pw->hwnd = CreateWindowExW( 0, CLASSNAME, NULL, style ,
 //                                x, y, width, height, NULL, NULL, hinstance, NULL);
-   
+//	SetDoubleClickTime(2000);
 	self(pw->hwnd,pw);
   
 	//ÔÝÊ±Òþ²Ø
@@ -248,6 +248,9 @@ namespace htmlayout
 
     switch (message) 
     {
+	case WM_LBUTTONDBLCLK:
+		MessageBoxA(NULL,"1","1",0);
+		break;
 // 		case WM_ERASEBKGND:
 // 			return TRUE; // as HTMLayout will draw client area in full
       case WM_NCHITTEST:
