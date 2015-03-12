@@ -20,7 +20,19 @@ namespace XCALL_ACTION
 	{
 
 	}
+	inline BOOL WStringToString(const std::wstring &wstr, std::string &str)
+	{
+		int nLen = (int)wstr.length();
+		str.resize(nLen, ' ');
 
+		int nResult = WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)wstr.c_str(), nLen, (LPSTR)str.c_str(), nLen, NULL, NULL);
+
+		if (nResult == 0)
+		{
+			return FALSE;
+		}
+		return TRUE;
+	}
 
 	inline std::string ToUTF8(const wchar_t* wideStr)
 	{
@@ -39,7 +51,7 @@ namespace XCALL_ACTION
 		std::string html = "";
 		while ((precode = PSQL->RESCULT()->getone()))
 		{
-			html = html + "<tr><td value=\"" + precode->get("id") + "\">" + ToUTF8(aux::a2w(precode->get("title").c_str())) + "</td><td>" + ToUTF8(aux::a2w(precode->get("mean").c_str())) + "</td></tr>";
+			html = html + "<tr value=\"" + precode->get("id") + "\"><td >" + ToUTF8(aux::a2w(precode->get("title").c_str())) + "</td><td>" + ToUTF8(aux::a2w(precode->get("mean").c_str())) + "</td></tr>";
 		}
 		//MessageBoxA(NULL, html.c_str(), "1", 0);
 
@@ -56,6 +68,38 @@ namespace XCALL_ACTION
 			MessageBoxA(NULL, "1", "1", 0);
 		}
 	}
+	/*main ÏêÏ¸*/
+	void inline show_main_view(HELEMENT he, HWND hwnd, json::value id)
+	{
+		using namespace std;
+		sql * PSQL = &sql::getInstance();
+		PSQL->createTable();
+		Record * precode;
+
+		string s_id = aux::w2a(id.to_string().c_str());
+
+		PSQL->query("SELECT * FROM main where id=" + s_id + "");
+		std::string html = "";
+		while ((precode = PSQL->RESCULT()->getone()))
+		{
+			html = html + precode->get("content");
+		}
+		//MessageBoxA(NULL, html.c_str(), "1", 0);
+		MessageBoxA(NULL, html.c_str(), "1", 0);
+// 		const unsigned  char chtml[1020000] = "";
+// 		strcpy((char*)chtml, html.c_str());
+// 		htmlayout::dom::element root = he;
+// 		root = root.root_element(hwnd);
+// 		htmlayout::dom::element rootList = htmlayout::dom::element(root.find_first(id.to_string().c_str()));//
+// 		if (rootList.is_valid())
+// 		{
+// 			rootList.set_html(chtml, sizeof(chtml));
+// 		}
+// 		else{
+// 			MessageBoxA(NULL, "1", "1", 0);
+// 		}
+	}
+
 	/*root list ÁÐ±í*/
 	void inline show_root_list(HELEMENT he,HWND hwnd, json::value id, json::value db)
 	{
@@ -105,7 +149,6 @@ namespace XCALL_ACTION
 			else{
 				sql = "INSERT INTO root values(NULL,'" + sval + "') ";
 			}
-			
 			PSQL->query(sql);
 			//MessageBox(NULL, p[L"rootval"].to_string().c_str(), L"1", 0);
 			return true;
@@ -125,10 +168,35 @@ namespace XCALL_ACTION
 
 	void inline show_main_edit_box(HELEMENT he, json::value id, HWND hwnd)
 	{
+		using namespace std;
 		//::htmlayout::window * a = reinterpret_cast<::htmlayout::window *>(lp);
 		//htmlayout::dom::element btn = he;
 		dlg dlg1(hwnd);
-		dlg1.show(IDR_MAIN_EDIT);
+
+		htmlayout::named_values  p;
+		p[TEXT("mainid")] = id.to_string();
+		p[TEXT("mean")] = TEXT("");
+		p[TEXT("title")] = id.to_string();
+		//p[TEXT("content")] = id.to_string();
+		if (dlg1.input(IDR_MAIN_EDIT, p) == IDOK)
+		{
+			sql * PSQL = &sql::getInstance();
+			PSQL->connect("db");
+			string s_mainid = std::string(aux::w2a(p[TEXT("mainid")].to_string().c_str()));
+			string s_mean = std::string(aux::w2a(p[TEXT("mean")].to_string().c_str()));
+			string s_title = std::string(aux::w2a(p[TEXT("title")].to_string().c_str()));
+			//string s_content = std::string(aux::w2a(p[TEXT("content")].to_string().c_str()));
+
+			htmlayout::dom::element root = $D(he).root_element(hwnd);
+			htmlayout::dom::element richtext = root.find_first("richtext");
+			string mcon = "";
+			if (!richtext.is_valid()){
+				MessageBoxA(NULL, "richtext error", "error", 0);
+				WStringToString((richtext.xcall("saveHTML", "c:/", "emit-all-images")).to_string().c_str(), mcon);
+				return;
+			}
+			string sql = "INSERT INTO main (id,root_id,title,mean,content,create_time) values(NULL,1,'" + s_title + "','" + s_mean + "','" + mcon + "',1) ";
+		}
 	}
 
 
@@ -171,10 +239,27 @@ protected:
   virtual BOOL  on_event (HELEMENT he, HELEMENT target, BEHAVIOR_EVENTS type, UINT_PTR reason );
   virtual LRESULT on_document_complete();
   virtual BOOL on_mouse(HELEMENT he, HELEMENT target, UINT event_type, POINT pt, UINT mouseButtons, UINT keyboardStates) { 
-	  showDebug(event_type);
 	  if (event_type == MOUSE_DCLICK)
 	  {
-		  std::wstring a = $D(target).get_value().to_string().c_str();
+		  htmlayout::dom::element src = target;
+
+		  if (aux::streq(src.get_element_type(), "text"))
+		  {
+			  src = src.parent();
+		  }
+		  if (aux::streq(src.get_element_type(), "td"))
+		  {
+			  src = src.parent();
+		  }
+		  if (aux::streq(src.get_element_type(), "tr") )
+		  {
+			  if (!aux::wcseq(src.get_attribute("value") , L""))
+			  {
+				  XCALL_ACTION::show_main_view(he, hwnd, src.get_attribute("value"));
+			  }
+		  }
+		  
+		  //
 		  return false;
 	  }
 	  return FALSE;

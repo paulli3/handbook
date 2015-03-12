@@ -6,3 +6,4 @@ pws.vbs
 *.ipch
 */Debug
 handbook/handbook/Debug
+/handbook/handbook.sdf

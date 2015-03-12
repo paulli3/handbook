@@ -19,7 +19,7 @@ namespace htmlayout
 	WNDCLASSEX wcex = { 0 };
 	// Initialize global strings
 	wcex.cbSize = sizeof(WNDCLASSEX);
-	wcex.style = CS_HREDRAW | CS_VREDRAW;
+	wcex.style = CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS;
 	wcex.lpfnWndProc = (WNDPROC)win_proc;
 	wcex.cbClsExtra = 0;
 	wcex.cbWndExtra = 0;
@@ -65,7 +65,7 @@ namespace htmlayout
 //     pw->hwnd = CreateWindowExW( WS_EX_LAYERED, CLASSNAME, NULL, style ,
 //                                 x, y, width, height, NULL, NULL, hinstance, NULL);
 
-	pw->hwnd = CreateWindow(CLASSNAME, caption, WS_OVERLAPPEDWINDOW,CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, NULL, NULL, hinstance, NULL);
+	pw->hwnd = CreateWindow(CLASSNAME, caption, CS_DBLCLKS|WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, NULL, NULL, hinstance, NULL);
 	
 	
 //    pw->hwnd = CreateWindowExW( 0, CLASSNAME, NULL, style ,
@@ -248,8 +248,8 @@ namespace htmlayout
 
     switch (message) 
     {
-	case WM_LBUTTONDBLCLK:
-		MessageBoxA(NULL,"1","1",0);
+// 	case WM_LBUTTONDBLCLK:
+// 		MessageBoxA(NULL,"1","1",0);
 		break;
 // 		case WM_ERASEBKGND:
 // 			return TRUE; // as HTMLayout will draw client area in full

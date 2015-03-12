@@ -10,32 +10,20 @@ namespace XCALL_ACTION
 {
 	void inline root_edit(HELEMENT he, HWND hwnd, json::value id, json::value title)
 	{
-		std::string sval = std::string(aux::w2a(title.to_string().c_str()));
-		sql * PSQL = &sql::getInstance();
-		PSQL->connect("db");
-		htmlayout::dom::element btn = he;
-		
-		//std::wstring w_id = id.to_string().c_str();
-		//w_id = btn.get_attribute("value");
-
-		std::string sql = "INSERT INTO root values(NULL,'" + sval + "') ";
-		PSQL->query(sql);
-		::PostMessage(hwnd, WM_CLOSE, 0, 0);
+// 		std::string sval = std::string(aux::w2a(title.to_string().c_str()));
+// 		sql * PSQL = &sql::getInstance();
+// 		PSQL->connect("db");
+// 		htmlayout::dom::element btn = he;
+// 		
+// 		//std::wstring w_id = id.to_string().c_str();
+// 		//w_id = btn.get_attribute("value");
+// 
+// 		std::string sql = "INSERT INTO root values(NULL,'" + sval + "') ";
+// 		PSQL->query(sql);
+// 		::PostMessage(hwnd, WM_CLOSE, 0, 0);
 	}
 
-	inline BOOL WStringToString(const std::wstring &wstr, std::string &str)
-	{
-		int nLen = (int)wstr.length();
-		str.resize(nLen, ' ');
 
-		int nResult = WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)wstr.c_str(), nLen, (LPSTR)str.c_str(), nLen, NULL, NULL);
-
-		if (nResult == 0)
-		{
-			return FALSE;
-		}
-		return TRUE;
-	}
 
 	void inline main_edit(HELEMENT he, HWND hwnd, json::value id, json::value title, json::value mean, json::value content )
 	{
@@ -55,7 +43,7 @@ namespace XCALL_ACTION
 			//main_edit($1(input[name=title]):value,$1(input[name=mean]):value,$1(richtext).saveHTML("c:/","emit-all-images"));
 			//OutputDebugString((richtext.xcall("saveHTML", "c:/", "emit-all-images")).to_string().c_str());
 			MessageBoxA(NULL, "richtext error", "error", 0);
-			WStringToString((richtext.xcall("saveHTML", "c:/", "emit-all-images")).to_string().c_str(), mcon);
+			//WStringToString((richtext.xcall("saveHTML", "c:/", "emit-all-images")).to_string().c_str(), mcon);
 			return;
 		}
 		
