@@ -4,6 +4,10 @@
 #include <map>
 #include <vector>
 #include "window.h"
+
+
+#include <stdarg.h> //不定参数的应用要用到这个来接收参数
+
 #ifndef DEBUG
     /* void DDebug(const char * str){  */
         // std::cout << str <<"\n";
@@ -89,6 +93,7 @@ class sql
         Result  mResult ;
         sql(){};
         sql & operator = (const sql &);
+		sqlite3_stmt * stmt = 0;
     public :
         sqlite3 *db;
         static sql & getInstance()
@@ -113,8 +118,8 @@ class sql
                 MessageBoxA(NULL,"connect db error","error",MB_OK);
                 return false;   
             }
-			ret = true;
-			createTable();
+			if (!is_connect)createTable();
+			is_connect = true;
             //DDebug("connect success;");
             return true;
         }
@@ -123,15 +128,60 @@ class sql
         {
             return &mResult;
         }
-        bool query(std::string sql/* ,sqlite3_callback Xcallback  */)
+
+		sql * createCommand(std::string sql)
+		{
+			
+			if (!sqlite3_prepare(db, sql.c_str(), -1, &stmt, 0)){
+				MessageBoxA(NULL, "sqlite3_prepare", "error", MB_OK);
+				return 0;
+			}
+			return this;
+		}
+		sql * bind(int pos_zero_indexed, std::string const& value)
+		{
+			if (sqlite3_bind_text(
+				stmt,
+				pos_zero_indexed + 1,  // Index of wildcard
+				value.c_str(),
+				value.length(),      // length of text
+				SQLITE_TRANSIENT     // SQLITE_TRANSIENT: SQLite makes its own copy
+				)
+				!= SQLITE_OK) {
+				MessageBoxA(NULL, "bind text error", "error", MB_OK);
+				return 0;
+			}
+			return this;
+		}
+		sql * bind(int pos_zero_indexed, double value)
+		{
+			if (sqlite3_bind_double(
+				stmt,
+				pos_zero_indexed + 1,  // Index of wildcard
+				value
+				)
+				!= SQLITE_OK) {
+				MessageBoxA(NULL, "bind double error", "error", MB_OK);
+				return 0;
+			}
+			return this;
+		}
+
+		bool query(std::string sql/* ,sqlite3_callback Xcallback  */, ...)
         {
             mResult.reset();
+// 			va_list arg_ptr;
+// 			va_start(arg_ptr, sql);
+// 			sql = sqlite3_mprintf(sql.c_str(), arg_ptr);
+// 			va_end(arg_ptr);
+
             int ret;
             ret = sqlite3_exec(db,sql.c_str(),&callback,static_cast<void*>(&mResult),&errmsg);
             if (! ret == SQLITE_OK){
-                char d[255];
-                sprintf(d,"query fail! [%s] [%s]",sql.c_str(),sqlite3_errmsg(db));
-                MessageBoxA(NULL,d,"error",MB_OK);
+				std::string errorstr;
+				errorstr = "query fail! [" + std::string(sqlite3_errmsg(db)) + "][" + sql + "]";
+                //sprintf(d,"query fail! [%s] [%s]",sql.c_str(),sqlite3_errmsg(db));
+				MessageBoxA(NULL, errorstr.c_str(), "error", MB_OK);
                 //Debug(d);
                 return false;
             }

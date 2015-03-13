@@ -50,3 +50,6 @@
 #include "dlg.h"
 
 
+
+#include <stdarg.h> //不定参数的应用要用到这个来接收参数
+

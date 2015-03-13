@@ -103,6 +103,7 @@ namespace htmlayout
 	  
 		  HELEMENT he=0;
 		  XCALL_ACTION::show_root_list(he, hwnd, "#second", "db");
+		  XCALL_ACTION::show_main_list(he, hwnd, "#mainbody");
 		  return 0;
 	  
 	  return 0; 

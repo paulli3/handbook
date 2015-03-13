@@ -239,6 +239,9 @@
     <None Include="..\..\res\rootedit.htm">
       <DeploymentContent>true</DeploymentContent>
     </None>
+    <None Include="..\..\res\view.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
