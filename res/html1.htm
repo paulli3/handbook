@@ -66,23 +66,29 @@
             click!:show_root_edit("add")=="1" ? show_root_list("#second","db");
         }
         html {
-            key-on!:key-code()==-2147483583 ? show_root_edit("add")=="1" ? show_root_list("#second","db");
-            //ctrl + a //key-on !:show_root_edit(key-code());
+            key-on!:key-code()!='^A' ? return,
+            $1(#second):focus ? (show_root_edit("add")=="1" ? (show_root_list("#second","db"), ) return, ),
+            show_main_edit("1") == "1" ? show_main_list("#mainbody"),return;
         }
-        #showmainedit {
+       
+
+         #showmainedit {
             click!:show_main_edit("1") == "1" ? show_main_list("#mainbody");
         }
         #showmainlist {
             click!:show_main_list("#mainbody");
         }
         #test {
-            
             click!:alert(2);
+        }
+
+        #second.list:focus, .right:focus, #mainbody:focus, #mainbody td:focus {
+            //border: 1px solid red;
         }
         #second.list div {
             behavior: clickable;
-            border: 1px solid red;
-            click!:show_root_edit(self.value ,self:value)=="1" ? show_root_list("#second","db");
+            click!:self.parent():focus=true;
+            double-click!:show_root_edit(self.value,self:value)=="1" ? show_root_list("#second","db");
         }
 
         #mainbody tr {

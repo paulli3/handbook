@@ -196,7 +196,7 @@ namespace XCALL_ACTION
 		using namespace std;
 		//::htmlayout::window * a = reinterpret_cast<::htmlayout::window *>(lp);
 		//htmlayout::dom::element btn = he;
-		dlg dlg1(hwnd);
+		dlg dlg1(hwnd, WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_SIZEBOX );
 
 		htmlayout::named_values  p;
 		p[TEXT("mainid")] = id.to_string();
