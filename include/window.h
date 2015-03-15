@@ -162,12 +162,14 @@ namespace XCALL_ACTION
 		htmlayout::named_values  p;
 		p[TEXT("rootval")] = val.to_string();
 		p[TEXT("rootid")] = id.to_string();
+		
 		if (dlg1.input(IDR_ROOT_EDIT, p) == IDOK)
 		{
 			sql * PSQL = &sql::getInstance();
 			PSQL->connect("db");
 			std::string sval = std::string(aux::w2a(p[L"rootval"].to_string().c_str()));
 			std::string sql = "";
+			std::wstring a = p[TEXT("rootid")].to_string().c_str();
 			if (p[TEXT("rootid")] != "add"){
 				sql = "UPDATE root set title='" + sval + "' where id=" + std::string(aux::w2a(p[L"rootid"].to_string().c_str()));
 			}
@@ -191,28 +193,68 @@ namespace XCALL_ACTION
 		return false;
 	}
 
+	bool inline delete_main(HELEMENT he, HWND hwnd, json::value id)
+	{
+		using namespace std;
+		sql * PSQL = &sql::getInstance();
+		PSQL->connect("db");
+		string sql;
+		sql = "delete FROM main where id=" + std::string(aux::w2a(id.to_string().c_str()));
+		return PSQL->query(sql);
+	}
 	bool inline show_main_edit_box(HELEMENT he, json::value id, HWND hwnd)
 	{
 		using namespace std;
 		//::htmlayout::window * a = reinterpret_cast<::htmlayout::window *>(lp);
 		//htmlayout::dom::element btn = he;
+		sql * PSQL = &sql::getInstance();
+		PSQL->connect("db");
 		dlg dlg1(hwnd, WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_SIZEBOX );
+		string sql;
+		sql = "SELECT * FROM main where id=" + std::string(aux::w2a(id.to_string().c_str()));
+		Record * data=0;
+		if (id != "add"){
+			PSQL->query(sql);
+			data = PSQL->RESCULT()->getone();
+		}
+
 
 		htmlayout::named_values  p;
-		p[TEXT("mainid")] = id.to_string();
-		p[TEXT("mean")] = TEXT("");
-		p[TEXT("title")] = TEXT("");
-		p[TEXT("content")] = TEXT("");
+		if (data){
+			p[TEXT("mainid")] = id;
+			p[TEXT("mean")] = data->get("mean");
+			p[TEXT("title")] = data->get("title");
+			p[TEXT("content")] = data->get("content");
+			p[TEXT("content1")] = data->get("content");
+		}
+		else{
+			p[TEXT("mainid")] = id;
+			p[TEXT("mean")] = "";
+			p[TEXT("title")] = TEXT("");
+			p[TEXT("content")] = TEXT("");
+		}
+		
 		if (dlg1.input(IDR_MAIN_EDIT, p) == IDOK)
 		{
-			sql * PSQL = &sql::getInstance();
-			PSQL->connect("db");
+			
 
 			string s_mainid = std::string(aux::w2a(p[TEXT("mainid")].to_string().c_str()));
 			string s_mean = std::string(aux::w2a(p[TEXT("mean")].to_string().c_str()));
 			string s_title = std::string(aux::w2a(p[TEXT("title")].to_string().c_str()));
 			string s_content = std::string(aux::w2a(p[TEXT("content")].to_string().c_str()));
 
+			std::wstring s = p[TEXT("mainid")].to_string().c_str();
+
+			
+			if (id != "add"){
+				sql = "UPDATE main set title='%q', mean='%q',content='%q' where id=" + std::string(aux::w2a(id.to_string().c_str()));
+				sql = sqlite3_mprintf(sql.c_str(), s_title.c_str(),s_mean.c_str(),s_content.c_str());
+			}
+			else{
+				sql = "INSERT INTO main (id,root_id,title,mean,content,create_time) values(NULL,1,'" + s_title + "','" + s_mean + "','" + "%q" + "',1) ";
+				//	MessageBoxA(hwnd, s_content.c_str(), "1", 0);
+				sql = sqlite3_mprintf(sql.c_str(), s_content.c_str());
+			}
 			//htmlayout::dom::element root = $D(he).root_element(hwnd);
 			//htmlayout::dom::element  root = htmlayout::dom::element::root_element(dlg1.hwnd);
 			//htmlayout::dom::element richtext = root.find_first("#test");
@@ -223,9 +265,7 @@ namespace XCALL_ACTION
 			//}
 			//PSQL->createCommand("INSERT INTO main (id,root_id,title,mean,content,create_time) values(?,?,?,?,?)");
 
-			string sql = "INSERT INTO main (id,root_id,title,mean,content,create_time) values(NULL,1,'" + s_title + "','" + s_mean + "','" + "%q" + "',1) ";
-		//	MessageBoxA(hwnd, s_content.c_str(), "1", 0);
-			sql = sqlite3_mprintf(sql.c_str(),s_content.c_str());
+			
 			//MessageBoxA(NULL, sql.c_str(), "1", 0);
 			return PSQL->query(sql);
 			//MessageBoxA(hwnd, s_content.c_str(), "1", 0);
@@ -334,7 +374,19 @@ protected:
 	  else if (aux::streq(name, "show_main_view")){
 		  XCALL_ACTION::show_main_view(he, hwnd, argv[0]);
 	  }
-	 
+	  else if (aux::streq(name, "delete_main")){
+		  if (XCALL_ACTION::delete_main(he, hwnd, argv[0]))
+		  {
+			  retval = TEXT("1");
+		  }
+	  }
+	  else if (aux::streq(name, "appwidth")){
+		  RECT rect;
+		  GetWindowRect(hwnd,&rect);
+		  char w[50];
+		  sprintf(w,"%d|%d",rect.right - rect.left,rect.bottom - rect.top);
+		  retval = w;
+	  }
 	  return true;
   }
 };

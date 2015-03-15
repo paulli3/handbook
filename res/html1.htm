@@ -27,8 +27,7 @@
 		dl{ border:1px solid #7b7b78;margin-left:0 1%}
 		dl.left{width:20%;}
             dl.left {
-                //overflow:auto scroll-manner( page-animation:true, step-animation:true, step:auto, page:auto );
-                overflow: auto scroll-manner( page-animation:true, step-animation:false, step:auto, wheel-animation:false );
+                overflow:auto scroll-manner( page-animation:true, step-animation:false, step:auto, wheel-animation:false );
                 horizontal-scrollbar: my-h-scrollbar;
                 height: 100%%;
                 
@@ -45,18 +44,13 @@
                 color:red;
                 border: 1px solid @BORDER_COLOR;
             }
-            dl dd {
-                
-                overflow: auto scroll-manner( page-animation:true, step-animation:false, step:auto, wheel-animation:false );
-            }
+            
         dl dd div:hover {
                 background: #EFEFEF;
                 behavior: clickable;
             }
-		//dl dd{ background:#FFF; }
 		
 		table{width:100%;}
-		//td{ background:#fff; border:1px solid #EFEFEF; }
 
         #showrootlist {
             click!:show_root_list("#second","db");
@@ -66,9 +60,18 @@
             click!:show_root_edit("add")=="1" ? show_root_list("#second","db");
         }
         html {
-            key-on!:key-code()!='^A' ? return,
-            $1(#second):focus ? (show_root_edit("add")=="1" ? (show_root_list("#second","db"), ) return, ),
-            show_main_edit("1") == "1" ? show_main_list("#mainbody"),return;
+            key-on!:key-code()=='^A' ? (
+            $1(body).root==1 ? (show_root_edit("add")=="1" ? (show_root_list("#second","db"), ) return, ),
+            show_main_edit("add") == "1" ? show_main_list("#mainbody") 
+            ), 
+            key-code()=='^S' ? (
+                $1(body).root==1 ? (show_root_edit($1(#second.list div[selected=1]).value,$1(#second.list div[selected=1]):value)=="1",show_root_list("#second","db"),return,),
+                show_main_edit($1(#mainbody tr[selected=1]).value)=="1" ? show_main_list("#mainbody")
+            ),
+            key-code() == '^D' ? (
+                delete_main($1(#mainbody tr[selected=1]).value) == "1" ? show_main_list("#mainbody")    
+            )
+                ;
         }
        
 
@@ -79,21 +82,33 @@
             click!:show_main_list("#mainbody");
         }
         #test {
-            click!:alert(2);
+            click!:$1(#value):value=appwidth();
+        }
+        body {
+            size-changed!:$1(#value):value=appwidth();
         }
 
-        #second.list:focus, .right:focus, #mainbody:focus, #mainbody td:focus {
+        #second.list:focus div, #second.list:focus, .right:focus, #mainbody:focus, #mainbody td:focus {
             //border: 1px solid red;
         }
         #second.list div {
             behavior: clickable;
-            click!:self.parent():focus=true;
+            click!:$1(body).root=1,self.parent().$(div).selected=0,self.selected=1;
             double-click!:show_root_edit(self.value,self:value)=="1" ? show_root_list("#second","db");
         }
 
+            #second.list div[selected=1], #mainbody tr[selected=1] {
+                color: red;
+            }
+
+
         #mainbody tr {
+            behavior: clickable;
+            click!:$1(body).root=0,self.parent().$(tr).selected=0,self.selected=1;
             double-click!:show_main_view(self.value);
         }
+
+        
     </style>
     <body>
     
@@ -114,6 +129,7 @@
 			<button id="showmainedit">showmainedit</button>
             <button id="showmainlist">showmainlist</button>
             <button id="test">test</button>
+            
 			<input style=" " type="text" value="" id="value" />
 			
             <div .body>
