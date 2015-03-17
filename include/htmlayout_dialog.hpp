@@ -327,6 +327,9 @@ HANDLED:
 
       switch(uMsg)
       {
+	  //case WM_NCCALCSIZE:	 // we have no non-client areas.
+	  //case WM_NCPAINT:      // we have no non-client areas.
+	  //case WM_NCACTIVATE:  return (wParam == 0) ? TRUE : FALSE; // we have no non-client areas.
         case WM_INITDIALOG:   lr = on_WM_INITDIALOG( hwndDlg, wParam, lParam ); goto HANDLED;
         case WM_CLOSE:        lr = on_WM_CLOSE( hwndDlg, wParam, lParam ); goto HANDLED;
         case WM_DESTROY:      lr = on_WM_DESTROY( hwndDlg, wParam, lParam ); goto HANDLED;

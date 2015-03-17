@@ -1,10 +1,6 @@
 
 #ifndef dlg___xxxx
 #define dlg___xxxx
-#include "sql.hpp"
-#include "debug.h"
-#include "dlg.h"
-#include "resource.h"
 
 #include "stdafx.h"
 class dlg : public htmlayout::dialog

@@ -238,6 +238,9 @@
     <ClInclude Include="..\..\include\dlg.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\topdlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\res\handbook.ico">
@@ -266,6 +269,9 @@
       <Filter>HTML</Filter>
     </None>
     <None Include="..\..\res\view.htm">
+      <Filter>HTML</Filter>
+    </None>
+    <None Include="..\..\res\mindefault.htm">
       <Filter>HTML</Filter>
     </None>
   </ItemGroup>

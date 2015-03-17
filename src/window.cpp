@@ -76,7 +76,11 @@ namespace htmlayout
 	//ÔÝÊ±Òþ²Ø
 	HTMLayoutSetCallback(pw->hwnd,&callback,pw);
     PBYTE pb; DWORD cb;
+#ifndef VER2
     if(load_resource_data(L"DEFAULT",pb,cb))
+#else
+	if (load_resource_data(L"MINDEFAULT", pb, cb))
+#endif
     {
       HTMLayoutLoadHtml(pw->hwnd,pb,cb);
 
@@ -252,8 +256,8 @@ namespace htmlayout
 // 	case WM_LBUTTONDBLCLK:
 // 		MessageBoxA(NULL,"1","1",0);
 //		break;
-// 		case WM_ERASEBKGND:
-// 			return TRUE; // as HTMLayout will draw client area in full
+ 		case WM_ERASEBKGND:
+ 			return TRUE; // as HTMLayout will draw client area in full
 
       case WM_NCHITTEST:
         if(me)

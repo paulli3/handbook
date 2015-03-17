@@ -11,6 +11,7 @@
 #include "sql.hpp"
 #include "debug.h"
 #include "dlg.h"
+#include "topdlg.h"
 #include "resource.h"
 
 
@@ -399,11 +400,14 @@ protected:
 		  retval = w;
 	  }
 	  else if (aux::streq(name, "showmin")){
-		  PBYTE pb; DWORD cb;
+		  /*PBYTE pb; DWORD cb;
 		  if (load_resource_data(L"MINDEFAULT", pb, cb))
 		  {
 			  HTMLayoutLoadHtml(hwnd, pb, cb);
-		  }
+		  }*/
+		  topdlg mtopdlg(hwnd, WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_VISIBLE);
+		  mtopdlg.show(IDR_ROOT_EDIT);
+
 	  }
 	  
 	  return true;
