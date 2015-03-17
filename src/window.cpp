@@ -60,14 +60,14 @@ namespace htmlayout
   window* window::create( int x, int y, int width, int height, const wchar_t* caption ) 
   {
     window* pw = new window();
-
-//     UINT style = WS_POPUP | WS_MAXIMIZEBOX | WS_MINIMIZEBOX | WS_SYSMENU | WS_SIZEBOX;
-//     pw->hwnd = CreateWindowExW( WS_EX_LAYERED, CLASSNAME, NULL, style ,
-//                                 x, y, width, height, NULL, NULL, hinstance, NULL);
-
-	pw->hwnd = CreateWindow(CLASSNAME, caption, CS_DBLCLKS|WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, NULL, NULL, hinstance, NULL);
+	//WS_EX_TOPMOST  ÖÃ¶¥Ñ¡Ïî
+    // UINT style = WS_POPUP | WS_MAXIMIZEBOX | WS_MINIMIZEBOX | WS_SYSMENU | WS_SIZEBOX;
+	// pw->hwnd = CreateWindowExW(WS_EX_LAYERED, CLASSNAME, NULL, style,  x, y, width, height, NULL, NULL, hinstance, NULL);
 	
+	pw->hwnd = CreateWindow(CLASSNAME, caption,   WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, NULL, NULL, hinstance, NULL);
 	
+	::SetWindowPos(pw->hwnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+	//::SetWindowPos(hwnd,HWND_NOTOPMOST,0,0,0,0,SWP_NOMOVE|SWP_NOSIZE)
 //    pw->hwnd = CreateWindowExW( 0, CLASSNAME, NULL, style ,
 //                                x, y, width, height, NULL, NULL, hinstance, NULL);
 //	SetDoubleClickTime(2000);
@@ -103,10 +103,10 @@ namespace htmlayout
 	  
 		  HELEMENT he=0;
 		  XCALL_ACTION::show_root_list(he, hwnd, "#second", "db");
-		  XCALL_ACTION::show_main_list(he, hwnd, "#mainbody");
+		  dom::element root = dom::root_element(hwnd);
+		  //MessageBoxW(NULL, $D(root.find_first("#value")).get_value().to_string().c_str(),L"1",0);
+		  XCALL_ACTION::show_main_list(he, hwnd, "#mainbody", $D(root.find_first("#var")).get_attribute("rootid"));
 		  return 0;
-	  
-	  return 0; 
   }
   
   void window::set_caption( const wchar_t* text )
@@ -251,9 +251,10 @@ namespace htmlayout
     {
 // 	case WM_LBUTTONDBLCLK:
 // 		MessageBoxA(NULL,"1","1",0);
-		break;
+//		break;
 // 		case WM_ERASEBKGND:
 // 			return TRUE; // as HTMLayout will draw client area in full
+
       case WM_NCHITTEST:
         if(me)
           return me->hit_test( GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam) );

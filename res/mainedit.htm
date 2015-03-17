@@ -2,57 +2,173 @@
 	<head>
     	<title>ROOT</title>
     	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+        
         <style>
-		*{margin:0;padding:0;}
-
-		.main{
-			padding:10px;
-		}
-            richtext {
-                min-width: 300px;
-                min-height: 300px;
-                width:100%%;
-                height:100%%;
-            }
-            html {
-                //key-on!:key-code()==-2147483635 ? main_edit("here_is_id",$1(input[name=title]):value,$1(input[name=mean]):value,$1(richtext).saveHTML("c:/","emit-all-images"));
-            }
-
-            input {
-                padding: 5px;
-                height: 10px;
-                color: #0094ff;
-                
-            }
-
-            textarea {
-                //value-changed!:$1(richtext).loadHTML(self:value);
-            }
+          *{margin:0;padding:0;}
+            body {background: #EDEAE4;}
+            richtext {min-width: 300px;min-height: 300px;width:100%%;height:100%%;}
+            input {padding: 5px;height: 10px;color: #0094ff;}
             richtext {
                 value-changed!:$1([name=content]):value=self.saveHTML("c:/","emit-all-images");
             }
-
-            table{
-                width:100%;
-                height:100%;
+            table{width:100%; height:100%;}
+            html{
+              key-on!:
+                !key-code('RETURN','^RETURN','TAB') ? return cancel,
+                key-code() == 'TAB' ? (return ture),
+                title = $1(#title),
+                title:value == "" ? (alert("请填写标题"),title:focus=true,return cancel );
             }
-
-            //key-on!:main_edit($1(input[name=title]):value,$1(input[name=mean]):value,$1(richtext).saveHTML("c:/","emit-all-images")); // 
         </style>
     </head>
 	<body>
+
         <textarea style="display:none" name="content"></textarea>
-    	
-                <table>
-                    <tr><td>title:</td><td><input #title name="title"/></td></tr>
-                    <tr><td>desc:</td><td><input name="mean" /></td></tr>
-                    <tr><td>data:</td><td><richtext name="content1"  allow-clipboard-images></richtext></td></tr>
-                </table>
+        <widget class="editor">
+            <widget .toolbar>
+                <widget .tb-button command=richtext:cut title="Cut">	 <img src="res:edit-cut.png" /></widget>
+                <widget .tb-button command=richtext:copy title="Copy">	 <img src="res:edit-copy.png" /></widget>
+                <widget .tb-button command=richtext:paste title="Paste"> <img src="res:edit-paste.png" /></widget>
+                <hr />
+                <widget .tb-button command=richtext:undo title="Undo">	 <img src="res:edit-undo.png" /></widget>
+                <widget .tb-button command=richtext:redo title="Redo">  <img src="res:edit-redo.png" /></widget>
+                <hr />
+                <widget .tb-button command=richtext:strong title="Strong emphasis"><b>B</b></widget>
+                <widget .tb-button command=richtext:em title="Emphasis"><i>I</i></widget>
+                <widget .tb-button command=richtext:code title="Code"><tt style="font-size:9px">code</tt></widget>
+                <hr />
+                <widget .tb-button command=richtext:p title="Paragraph"><b>P</b></widget>
+                <widget .tb-button.h command=richtext:h1 title="Header 1">H<b>1</b></widget>
+                <widget .tb-button.h command=richtext:h2 title="Header 2">H<b>2</b></widget>
+                <widget .tb-button.h command=richtext:h3 title="Header 3">H<b>3</b></widget>
+                <widget .tb-button.h command=richtext:h4 title="Header 4">H<b>4</b></widget>
+                <hr />
+                <widget .tb-button command=richtext:pre title="Block of plain text, <pre>"><tt>pre</tt></b></widget>
+                <hr />
+                <widget .tb-button command=richtext:li-ul title="List item, unordered list"><img src="res:format-ul.png" /></widget>
+                <widget .tb-button command=richtext:li-ol title="List item, unordered list"><img src="res:format-ol.png" /></widget>
+                <widget .tb-button command=richtext:indent-dec title="Increase level of list item or quote"><img src="res:format-indent-dec.png" /></widget>
+                <widget .tb-button command=richtext:indent-inc title="Decrease level of list item or un-quote"><img src="res:format-indent-inc.png" /></widget>
+              
+  
+                <!--<widget .tb-button .rulers command=richtext:show-rulers><img src="rulers.png" title="Show/hide rulers" /></widget>-->
+            </widget>
+            <widget .sidebar>
+            </widget>
+            <richtext toolbar="widget.toolbar" name="content1" content-style=""
+                      allow-clipboard-images
+                      objects-list="ul#current-objects">
+                <p>Hello world!</p>
+            </richtext>
+            <!-- stack/list of current objects -->
+            <ul #current-objects></ul>
+           
+        </widget>
+        <input  id="title" name="title" />
+        <input  id="mean" name="mean" />
         
         <input #mainid style="display:none" />
         <button name="OK" role="default-button" style="display:none"> OK </button>
         <button name="CANCEL" role="cancel-button" style="display:none"> CANCEL </button>
         <br>
+<style>
+ @const COLOR_BASE: threedface;
+            @const COLOR_SHADOW: threedshadow;
+            @const COLOR_LIGHT: threedhighlight;
+            @const COLOR_BACK_LIGHT: scrollbar;
+            //@const BORDER: 1px solid @COLOR_SHADOW;
+            @const BUTTON_BACK_NORMAL: url(theme:toolbar-button-normal) stretch;
+            @const BUTTON_BACK_HOVER: url(theme:toolbar-button-hover) stretch;
+            @const BUTTON_BACK_ACTIVE: url(theme:toolbar-button-pressed) stretch;
+            @const BUTTON_BACK_CHECKED: url(theme:toolbar-button-checked) stretch;
+            @const BUTTON_BACK_CHECKED_HOVER: url(theme:toolbar-button-checked-hover) stretch;
+            @const BUTTON_BACK_DISABLED: url(theme:toolbar-button-disabled) stretch;
+            widget.editor {
+                width: *;
+                height: *;
+                min-height: 100px;
+                border: @BORDER;
+                style-set: "richtext-editor";
+                // to isolate this thing from other styles;
+            }
 
+            @set richtext-editor {
+                richtext {
+                    padding: 0;
+                    background-color: window;
+                    background-image: none;
+                    behavior: ~ richtext-current-objects;
+                    width: *;
+                    height: *;
+                    overflow-x: auto;
+                    overflow-y: scroll;
+                    font: 10pt Verdana;
+                }
+
+                widget.toolbar {
+                    flow: horizontal;
+                    height: 24px;
+                    background-color: threedface;
+                    border-bottom: @BORDER;
+                    padding: 2px;
+                }
+
+                widget.tb-button {
+                    //prototype: ToolbarButton;
+                    font-family: tahoma arial;
+                    behavior: clickable;
+                    padding: 3px;
+                    width: 20px;
+                    height: *;
+                    text-align: center;
+                    vertical-align: middle;
+                    background: @BUTTON_BACK_NORMAL;
+                }
+
+                    widget.tb-button:disabled {
+                        background: @BUTTON_BACK_DISABLED;
+                        color: threedshadow;
+                    }
+
+                        widget.tb-button:disabled img {
+                            foreground-image-transformation: contrast-brightness-gamma(0.15,0.75,1.0);
+                        }
+
+                    widget.tb-button:hover:not(:disabled) {
+                        background: @BUTTON_BACK_HOVER;
+                    }
+
+                    widget.tb-button:active:not(:disabled) {
+                        background: @BUTTON_BACK_ACTIVE;
+                        padding: 4px 2px 2px 4px;
+                    }
+
+                    widget.tb-button:checked:not(:disabled) {
+                        background: @BUTTON_BACK_CHECKED;
+                    }
+
+                    widget.tb-button:checked:hover:not(:disabled) {
+                        background: @BUTTON_BACK_CHECKED_HOVER;
+                    }
+
+                    widget.tb-button.h:not(:disabled) {
+                        color: threedshadow;
+                    }
+
+                        widget.tb-button.h:not(:disabled) b {
+                            color: windowtext;
+                        }
+
+                widget.toolbar > hr {
+                    width: 0;
+                    height: *;
+                    margin: 0 2px;
+                    border: 1px solid;
+                    border-color: @COLOR_SHADOW @COLOR_LIGHT @COLOR_LIGHT @COLOR_SHADOW;
+                }
+            }
+
+            // end of @set richtext-editor
+</style>
     </body>
 </html>

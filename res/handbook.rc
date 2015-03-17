@@ -96,6 +96,7 @@ END
 //
 
 DEFAULT                 HTML                    "html1.htm"
+MINDEFAULT              HTML                    "mindefault.htm"
 IDR_ROOT_EDIT		HTML					"rootedit.htm"
 IDR_MAIN_EDIT		HTML					"mainedit.htm"
 IDR_VIEW    		HTML					"view.htm"

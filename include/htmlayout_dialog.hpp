@@ -363,10 +363,21 @@ HANDLED:
       dom::element title = root.find_first("title"); 
       if( title.is_valid() )
 		  ::SetWindowText(hwndDlg,w2t(title.text().c_str()));
-
-      SIZE sz;
-      sz.cx = HTMLayoutGetMinWidth(hwndDlg);
-      sz.cy = HTMLayoutGetMinHeight(hwndDlg,sz.cx);
+	  
+	  SIZE sz;
+	  dom::element isMaxsz = root.find_first("#maxsz");
+	  if (isMaxsz.is_valid()){
+		  RECT rct;
+		  ::GetWindowRect(ctl->parent, &rct);
+		  sz.cx = rct.right-rct.left;
+		  sz.cy = rct.bottom - rct.top;		//È«ÆÁÄ»µ¯´°µÄÐÞ¸Ä
+	  }
+	  else{
+		  sz.cx = HTMLayoutGetMinWidth(hwndDlg);
+		  sz.cy = HTMLayoutGetMinHeight(hwndDlg, sz.cx);
+	  }
+      
+      
 
       RECT rc; rc.left = ctl->position.x;
                rc.top = ctl->position.y;

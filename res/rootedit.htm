@@ -51,24 +51,25 @@
 			width:300px;
 			height:300px;				
 		}
-            html {
-                //behavior:accesskeys tests;
-                
-            }
-            #value {
-               // key-on!:key-code() == 13 ? (root_edit(self:value));
-            }
-            input{
-                padding:5px;
-                height:10px;
-                color:#0094ff;
-            }
-           
+    html {
+        key-on!:
+          val = $1(#value),
+          val:value!="" ? return true # (return cancel);
+    }
+    
+    input{
+        padding:5px;
+        height:10px;
+        color:#0094ff;
+    }
+    .a {
+        click!:resize("11 22 33 44");
+    }
         </style>
     </head>
 	<body>
     	<div .main>
-            
+           <!-- <button .a>1111</button>-->
         	<label for="author"><span class="input-prepend" name="aaa">ROOT名称</span></label>
             <input id="value" name="rootval" mtype="rootedit" type="text" value="" >
             <input type="text" style="display:none" name="rootid" value="0"/>
