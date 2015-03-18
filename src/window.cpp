@@ -24,7 +24,7 @@ namespace htmlayout
 	wcex.cbClsExtra = 0;
 	wcex.cbWndExtra = 0;
 	wcex.hInstance = hInstance;
-	wcex.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_W7AERO));
+	wcex.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_HANDBOOK));
 	wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
 	wcex.hbrBackground = NULL;//(HBRUSH)(COLOR_WINDOW+1);
 	wcex.lpszClassName = CLASSNAME;
@@ -66,7 +66,7 @@ namespace htmlayout
 	
 	pw->hwnd = CreateWindow(CLASSNAME, caption,   WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, NULL, NULL, hinstance, NULL);
 	
-	::SetWindowPos(pw->hwnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+	//::SetWindowPos(pw->hwnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE); //ÖÃ¶¥
 	//::SetWindowPos(hwnd,HWND_NOTOPMOST,0,0,0,0,SWP_NOMOVE|SWP_NOSIZE)
 //    pw->hwnd = CreateWindowExW( 0, CLASSNAME, NULL, style ,
 //                                x, y, width, height, NULL, NULL, hinstance, NULL);
@@ -95,7 +95,7 @@ namespace htmlayout
       pw->corner          = r.get_element_by_id("corner");
 
       attach_event_handler(pw->hwnd, pw);
-
+	  
       pw->set_caption(caption);
 
     }
@@ -148,7 +148,7 @@ namespace htmlayout
       return HTBOTTOMRIGHT;
 
     RECT body_rc = body.get_location(ROOT_RELATIVE | CONTENT_BOX);
-
+	
     if( PtInRect(&body_rc, pt) )
       return HTCLIENT;
 
@@ -250,7 +250,7 @@ namespace htmlayout
   // HTMLayout -
 
     window* me = self(hwnd);
-
+	//int a = -1;
     switch (message) 
     {
 // 	case WM_LBUTTONDBLCLK:
@@ -260,8 +260,14 @@ namespace htmlayout
  			return TRUE; // as HTMLayout will draw client area in full
 
       case WM_NCHITTEST:
-        if(me)
-          return me->hit_test( GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam) );
+		  if (me)
+		  {
+			  return me->hit_test(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
+// 			  char str[250];
+// 			  sprintf(str, "hit=%d", a);
+// 			  OutputDebugStringA(str);
+//			  return a;
+		  }
         break;
 // 
       case WM_NCCALCSIZE:  return 0; // we have no non-client areas.

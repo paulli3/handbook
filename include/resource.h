@@ -7,7 +7,7 @@
 #define IDS_APP_TITLE                   103
 #define IDD_ABOUTBOX                    103
 #define IDM_ABOUT                       104
-#define IDI_W7AERO                      107
+#define IDI_HANDBOOK                  107
 #define IDI_SMALL                       108
 #define IDC_W7AERO                      109
 #define IDR_MAINFRAME                   128
@@ -16,6 +16,7 @@
 #define IDR_ROOT_EDIT				200
 #define IDR_MAIN_EDIT				201
 #define IDR_VIEW							202
+#define IDR_ROOT_TEST				203
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED

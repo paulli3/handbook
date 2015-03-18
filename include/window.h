@@ -92,7 +92,8 @@ namespace XCALL_ACTION
 			html = html + precode->get("content");
 		}
 
-		dlg dlg1(hwnd);
+		dlg dlg1(hwnd, WS_SIZEBOX);
+		//topdlg mtopdlg(hwnd, WS_SIZEBOX);
 		htmlayout::named_values  p;
 		p[TEXT("val")] = html.c_str();
 		dlg1.input(IDR_VIEW,p);
@@ -303,7 +304,7 @@ public:
 
   static  window* create( int x, int y, int width, int height, const wchar_t* caption = 0 );
   static  window* self(HWND hWnd) { return (window*)::GetWindowLongPtr(hWnd,GWLP_USERDATA); }
-
+  static  void        self(HWND hWnd, window* inst) { ::SetWindowLongPtr(hWnd, GWLP_USERDATA, LONG_PTR(inst)); }
   void            set_caption( const wchar_t* text );
 
   static  ATOM              register_class(HINSTANCE hInstance);
@@ -345,7 +346,7 @@ protected:
 // 	  }
 // 	  return FALSE;
 //   }
-  static  void              self(HWND hWnd, window* inst) { ::SetWindowLongPtr(hWnd,GWLP_USERDATA, LONG_PTR(inst)); }
+  
   static  LRESULT CALLBACK  win_proc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
   static  HINSTANCE         hinstance;
@@ -405,8 +406,8 @@ protected:
 		  {
 			  HTMLayoutLoadHtml(hwnd, pb, cb);
 		  }*/
-		  topdlg mtopdlg(hwnd, WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_VISIBLE);
-		  mtopdlg.show(IDR_ROOT_EDIT);
+		  topdlg mtopdlg(hwnd, WS_SIZEBOX);
+		  mtopdlg.show(IDR_ROOT_TEST);
 
 	  }
 	  

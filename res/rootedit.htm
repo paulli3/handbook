@@ -51,8 +51,10 @@
 			width:300px;
 			height:300px;				
 		}
-    html {
+    .main {
         key-on!:
+          key-code() == -2147483635 ? (return cancel), //禁用enter
+          key-code() != 'RETURN' ? return true,
           val = $1(#value),
           val:value!="" ? return true # (return cancel);
     }

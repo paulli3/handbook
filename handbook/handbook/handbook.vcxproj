@@ -223,6 +223,7 @@
   <ItemGroup>
     <Image Include="..\..\res\handbook.ico" />
     <Image Include="..\..\res\smallhandbook.ico" />
+    <Image Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\res\handbook.rc" />
@@ -241,6 +242,9 @@
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="..\..\res\rootedit.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="..\..\res\root_test.htm">
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="..\..\res\view.htm">

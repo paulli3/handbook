@@ -1,0 +1,67 @@
+﻿<html>
+	<head>
+    	<title>ROOT</title>
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+        <style>
+		*{margin:0;padding:0;}
+	
+		richtext{
+			width:300px;
+			height:300px;				
+		}
+//    html {
+ //       key-on!:
+  //        val = $1(#value),
+   //       val:value!="" ? return true # (return cancel);
+    //}
+    
+    input{
+        padding:5px;
+        height:10px;
+        color:#0094ff;
+    }
+#abbb{
+ click!:alert(1)
+}
+#topbar widget{
+ behavior: clickable;
+}
+        </style>
+<style>
+	html{background:#ccc;}
+	body{width:100%%;height:100%%;border:1px solid red;}
+	#topbar widget[type="button"]{width:1em;height:1em;background-image:none;padding:1px;font-family:marlett;font-size:10pt;color:#FFF;border:1px solid #FFF;text-align:center;vertical-align:center;margin:0;}
+	#topbar widget[type="button"]:hover{}
+	#topbar widget[type="button"]:active{background-color:#274749;}
+	#topbar #minimize,#topbar #maximize{margin-right:2px;}
+	#topbar #icon{foreground-image:url(back.png);foreground-repeat:no-repeat;foreground-position:50% 50%;}
+	#topbar{flow:horizontal;padding:4px 10px 5px;}
+	#topbar #caption{border:1px solid red;height:30px;}
+	#bottombar{flow:horizontal;}
+	</style>
+    </head>
+	<body>
+	
+
+<div id="topbar" style="position:fixed;top:0;right:0;">
+       <div id="caption">ROOT名称</div>
+      <widget id="icon" type="button"></widget>
+      <widget id="minimize" type="button">0</widget>
+      <widget id="maximize" type="button">1</widget>
+      <widget id="close" type="button">r</widget>
+    </div>
+
+    	<div .main>
+
+        	<label for="author"><span class="input-prepend" name="aaa">ROOT名称</span></label>
+            <input id="value" name="rootval" mtype="rootedit" type="text" value="" >
+            <input type="text" style="display:none" name="rootid" value="0"/>
+            <button name="OK" role="default-button" style="display:none"> OK </button>
+            <button name="CANCEL" role="cancel-button" style="display:none"> CANCEL </button>
+
+        </div>
+            
+        <br>
+        
+    </body>
+</html>

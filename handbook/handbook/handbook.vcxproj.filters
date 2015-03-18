@@ -249,6 +249,9 @@
     <Image Include="..\..\res\smallhandbook.ico">
       <Filter>资源文件</Filter>
     </Image>
+    <Image Include="Icon.ico">
+      <Filter>资源文件</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\res\handbook.rc">
@@ -272,6 +275,9 @@
       <Filter>HTML</Filter>
     </None>
     <None Include="..\..\res\mindefault.htm">
+      <Filter>HTML</Filter>
+    </None>
+    <None Include="..\..\res\root_test.htm">
       <Filter>HTML</Filter>
     </None>
   </ItemGroup>
