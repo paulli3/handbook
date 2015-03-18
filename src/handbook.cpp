@@ -67,7 +67,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
 	hInst = hInstance; // Store instance handle in our global variable
 
-	htmlayout::window* pwnd = htmlayout::window::create(0, 0, 500, 500, L"Hello world!");
+	htmlayout::window* pwnd = htmlayout::window::create(0, 0, 500, 500, L"HandleBook");
 
 	//hWnd = CreateWindowEx(WS_EX_APPWINDOW, szWindowClass, szWindowClass, WS_POPUP | WS_SYSMENU | WS_CLIPCHILDREN | WS_VISIBLE,
 	//   0, 0, 300, 300, NULL, NULL, hInstance, NULL);

@@ -17,7 +17,18 @@
 
 namespace XCALL_ACTION
 {
-	void onDocumentCompele()
+	inline char * get_dir()
+	{
+		static char g_cmd_path[MAX_PATH];
+		if (g_cmd_path[0] != '\0') return g_cmd_path;
+		memset(g_cmd_path, 0, MAX_PATH*sizeof(char));
+		GetCurrentDirectoryA(MAX_PATH, g_cmd_path);
+		// showDebug((g_cmd_path));
+		return g_cmd_path;
+	}
+
+
+	/*void onDocumentCompele()
 	{
 
 	}
@@ -33,7 +44,7 @@ namespace XCALL_ACTION
 			return FALSE;
 		}
 		return TRUE;
-	}
+	}*/
 
 	inline std::string ToUTF8(const wchar_t* wideStr)
 	{
@@ -283,6 +294,7 @@ namespace XCALL_ACTION
 
 
 }
+#define __DIR__ XCALL_ACTION::get_dir()
 
 
 namespace htmlayout
@@ -406,9 +418,30 @@ protected:
 		  {
 			  HTMLayoutLoadHtml(hwnd, pb, cb);
 		  }*/
-		  topdlg mtopdlg(hwnd, WS_SIZEBOX);
-		  mtopdlg.show(IDR_ROOT_TEST);
+		  
+		  /*topdlg mtopdlg(hwnd, WS_SIZEBOX);
+		  mtopdlg.show(IDR_ROOT_TEST);*/
 
+		  
+		  BOOL done = TRUE;
+		  WIN32_FIND_DATAA fd;
+		  char dirpath[255];
+		  sprintf(dirpath, "%s/*.db",__DIR__);
+		  HANDLE hFind = FindFirstFileA(dirpath, &fd);//第一个参数是路径名，可以使用通配符，懂DOS的人应该知道吧！fd存储有文件的信息
+		  std::string ret = "";
+		  
+		  while (done)
+		  {
+			  OutputDebugStringA(fd.cFileName);
+			  
+			  ret = ret + fd.cFileName;
+			  done = FindNextFileA(hFind, &fd);//返回的值如果为0则没有文件要寻了
+		  }
+
+		  retval = ret.c_str();
+
+		  MessageBoxA(NULL, ret.c_str(), "1", 0);
+		  
 	  }
 	  
 	  return true;
