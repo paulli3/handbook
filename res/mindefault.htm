@@ -90,12 +90,15 @@
         }
         
         #showmin{
-          click!:showmin();
+          click!:$1(#t):value=showmin();
         }
     </style>
     <body>
     
-        
+   <div id="t">
+
+
+   </div>     
         
     <div id="topbar">
       <widget id="icon" type="button"></widget>
@@ -148,7 +151,13 @@
             font-size: 12px;
             font-weight: normal;
         }
-		.main{padding:5px 10px;height:100%%;background:#DBE2E8;margin:0px 3px 3px}
+    .main {
+        padding: 5px 10px;
+        height: 100%%;
+        background: #DBE2E8;
+        margin: 0px 3px 3px;
+        border-top: 1px solid #333;
+    }
 
     .body {
         flow: horizontal;
@@ -163,7 +172,6 @@
         font: 10pt Verdana;
         overflow: hidden;
         background-color: transparent;
-        //background-color:#ccc;
         background-image: url(back1.png);
         background-repeat: expand;
         background-position: 15 15 15 15;
@@ -174,10 +182,8 @@
         width: 100%%;
         height: 100%%;
         background:#336699;
-        //border: 1px solid #FFF;
     }
     div#second.list div{
-        
         padding:5px;
     } 
     div#second.list, table {
@@ -185,7 +191,6 @@
     }
     table {
         vertical-scrollbar: my-v-scrollbar;
-        //border: 1px solid silver;
         width: 100%%;
         height: 100%%;
         behavior: grid column-resizer;
@@ -212,26 +217,26 @@
         table tbody tr:hover {
             background: #fff #888 #888 #fff;
         }
-         #topbar widget[type="button"] {
-            
-            background-image: none;
-            font-family: marlett;
-            font-size: 10pt;
-            color: #FFF;
-            text-align: center;
-            vertical-align: center;
-            margin: 0;
-        }
-
+    #topbar widget[type="button"] {
+        width: 25px;
+        height: 25px;
+        padding: 0;
+        overflow: hidden;
+        background-image: none;
+        font-family: marlett;
+        font-size: 10pt;
+        color: #FFF;
+        text-align: center;
+        vertical-align: center;
+        margin: 0;
+        //outline: 2px glow orange 4px;
+    }
         #topbar widget[type="button"]:hover {
-            //color:orange;
-            //border-color:orange;
-            //background-color:#B0CFD1;
-            //outline:2px glow orange 4px;
+            background-color: #666;
         }
-
-        #topbar widget[type="button"]:active {
-            background-color: #274749;
+        
+         #topbar widget[type="button"]:active {
+            background-color: #333;
         }
 
     #topbar #minimize,
@@ -241,12 +246,7 @@
 
     #topbar #icon {
         vertical-align:middle;
-        margin-left:20px;
-        width:15px;
-        height:15px;
-        padding:0;
-        float:left;
-        overflow:hidden;
+        margin:5px 10px 0 15px;
         background: url(micon.ico);
         background-repeat: expand;
         
@@ -263,8 +263,7 @@
 
         #topbar #caption {
             color: #FFF;
-            
-            outline: 3px glow #274749;
+            outline: 3px glow red;
         }
 
     #bottombar {

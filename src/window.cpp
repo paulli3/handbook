@@ -276,12 +276,12 @@ namespace htmlayout
 // 
       case WM_GETMINMAXINFO:
 		  {
-							   LRESULT lr = DefWindowProcW(hwnd, message, wParam, lParam);
-							   MINMAXINFO* pmmi = (MINMAXINFO*)lParam;
-							   pmmi->ptMinTrackSize.x = ::HTMLayoutGetMinWidth(hwnd);
-							   RECT rc; GetWindowRect(hwnd, &rc);
-							   pmmi->ptMinTrackSize.y = ::HTMLayoutGetMinHeight(hwnd, rc.right - rc.left);
-							   return lr;
+					LRESULT lr = DefWindowProcW(hwnd, message, wParam, lParam);
+					MINMAXINFO* pmmi = (MINMAXINFO*)lParam;
+					pmmi->ptMinTrackSize.x = ::HTMLayoutGetMinWidth(hwnd);
+					RECT rc; GetWindowRect(hwnd, &rc);
+					pmmi->ptMinTrackSize.y = ::HTMLayoutGetMinHeight(hwnd, rc.right - rc.left);
+					return lr;
 		  }
 
       case WM_CLOSE:

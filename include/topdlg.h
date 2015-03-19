@@ -2,6 +2,7 @@
 #ifndef dlg_topdlg__xxxx
 #define dlg_topdlg__xxxx
 #include "stdafx.h"
+#include "resource.h"
 
 
 class topdlg : public htmlayout::dialog
@@ -103,7 +104,11 @@ public:
 		}
 		return show(html, html_length);
 	}
-
+	inline unsigned int input(UINT html_res_id, htmlayout::named_values& values)
+	{
+		pvalues = &values;
+		return show(html_res_id);
+	}
 	// show HTML dialog from html in memory buffer
 	inline unsigned int show(LPCBYTE html, UINT html_length)
 	{
@@ -132,7 +137,28 @@ public:
 		{
 			htmlayout::set_values(root, *pvalues);
 		}
+
 		this->body = root.find_first("body");
+		//LPBYTE c = 0;
+		//HTMLayoutGetElementHtml(body, &c, NULL);
+
+ 		PBYTE   html_common;
+ 		DWORD   html_length_common;
+		htmlayout::load_html_resource(IDR_COMMON, html_common, html_length_common);//添加通用的css，和html
+		//PBYTE *aByte = new PBYTE[html_length + html_length_common];
+		//memcpy(aByte,html,html_length);
+		//memcpy(aByte+html_length, html_common, html_length_common);
+		HTMLayoutSetElementHtml(body, (LPCBYTE)html_common, html_length_common, SIH_INSERT_AT_START);
+// 		if (!)
+// 		{
+// 			assert(false); // resource not found!
+// 			return 0;
+// 		}
+		//strcat((char*)c, (char*)html_common);
+		//MessageBoxA(NULL, (char *)aByte, "1", 0);
+		//OutputDebugStringA((char *)aByte);
+		//delete aByte;
+
 		this->caption = root.get_element_by_id("caption");
 		this->button_min = root.get_element_by_id("minimize");
 		this->button_max = root.get_element_by_id("maximize");
@@ -143,26 +169,26 @@ public:
 		self(this->hwnd, this);
 
 		ShowWindow(hwnd, SW_SHOW);
-		do_loop(hwnd);
+		do_modal_loop(hwnd);
 		return return_id;
 	}
 
-	inline void do_loop(HWND hwnd)
-	{
-#if defined(UNDER_CE)
-		HWND frm = GetWindow(hwnd, GW_OWNER);
-#else
-		HWND frm = GetAncestor(hwnd, GA_ROOTOWNER);
-#endif
-		MSG msg;
-		while (::IsWindow(hwnd) && GetMessage(&msg, NULL, 0, 0))
-		{
-			htmlayout::queue::execute();
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
-		
-	}
+// 	inline void do_loop(HWND hwnd)
+// 	{
+// #if defined(UNDER_CE)
+// 		HWND frm = GetWindow(hwnd, GW_OWNER);
+// #else
+// 		HWND frm = GetAncestor(hwnd, GA_ROOTOWNER);
+// #endif
+// 		MSG msg;
+// 		while (::IsWindow(hwnd) && GetMessage(&msg, NULL, 0, 0))
+// 		{
+// 			htmlayout::queue::execute();
+// 			TranslateMessage(&msg);
+// 			DispatchMessage(&msg);
+// 		}
+// 		
+// 	}
 
 
 	virtual inline BOOL handle_event(HELEMENT he, BEHAVIOR_EVENT_PARAMS& params)
@@ -228,6 +254,7 @@ public:
 
 		return hwnd;
 	}
+
 	static inline INT_PTR CALLBACK DialogProc
 		(
 		HWND hwndDlg,   // handle to dialog box
@@ -253,10 +280,10 @@ public:
 		switch (uMsg)
 		{
 			case WM_NCHITTEST: 
-				lr = ctl->hit_test(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
-				char l[50];
-				sprintf(l,"%d",lr);
-				OutputDebugStringA(l);
+				lr = ctl->hit_test( GET_X_LPARAM(lParam),  GET_Y_LPARAM(lParam));
+// 				char l[50];
+// 				sprintf(l,"%d",lr);
+// 				OutputDebugStringA(l);
 				goto HANDLED;
 				//return ctl->hit_test(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
 			case WM_NCCALCSIZE:	 goto HANDLED;// we have no non-client areas.

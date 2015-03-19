@@ -229,6 +229,9 @@
     <ResourceCompile Include="..\..\res\handbook.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\res\common.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
     <None Include="..\..\res\dbedit.htm">
       <DeploymentContent>true</DeploymentContent>
     </None>

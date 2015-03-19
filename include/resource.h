@@ -17,6 +17,8 @@
 #define IDR_MAIN_EDIT				201
 #define IDR_VIEW							202
 #define IDR_ROOT_TEST				203
+#define IDR_COMMON				    204
+
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED

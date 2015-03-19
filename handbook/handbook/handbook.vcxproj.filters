@@ -280,5 +280,8 @@
     <None Include="..\..\res\root_test.htm">
       <Filter>HTML</Filter>
     </None>
+    <None Include="..\..\res\common.htm">
+      <Filter>HTML</Filter>
+    </None>
   </ItemGroup>
 </Project>

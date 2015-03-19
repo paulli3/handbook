@@ -1,0 +1,16 @@
+<style>
+body{font-size:12px;}
+#topbar widget[type="button"]{width:25px;height:25px;padding:0;overflow:hidden;background-image:none;font-family:marlett;font-size:10pt;color:#FFF;text-align:center;vertical-align:center;margin:0;}
+#topbar widget[type="button"]:hover{background-color:#666;}
+#topbar widget[type="button"]:active{background-color:#333;}
+#topbar #minimize,#topbar #maximize{margin-right:2px;}
+#topbar #icon{vertical-align:middle;margin:5px 10px 0 15px;background:url(micon.ico);background-repeat:expand;display:none;}
+#topbar{flow:horizontal;background:url(bg.png) repeat-x;height:26px;line-height:26px;overflow:hidden;padding:0 5px;}
+</style>
+<div id="topbar">
+  <div id="caption">ROOT名称</div>
+  <widget id="icon" type="button"></widget>
+  <widget id="minimize" type="button">0</widget>
+  <widget id="maximize" type="button">1</widget>
+  <widget id="close" type="button">r</widget>
+</div>
