@@ -163,6 +163,7 @@ public:
 		this->button_min = root.get_element_by_id("minimize");
 		this->button_max = root.get_element_by_id("maximize");
 		this->button_icon = root.get_element_by_id("icon");
+
 		this->button_close = root.get_element_by_id("close");
 		this->corner = root.get_element_by_id("corner");
 		

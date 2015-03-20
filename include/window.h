@@ -403,12 +403,27 @@ protected:
 		  {
 			  retval = TEXT("1");
 		  }
-	  } else if (aux::streq(name, "appwidth")){
+	  }
+	  else if (aux::streq(name, "appwidth")){
 		  RECT rect;
-		  GetWindowRect(hwnd,&rect);
+		  GetWindowRect(hwnd, &rect);
 		  char w[50];
-		  sprintf(w,"%d|%d",rect.right - rect.left,rect.bottom - rect.top);
+		  sprintf(w, "%d|%d", rect.right - rect.left, rect.bottom - rect.top);
 		  retval = w;
+	  }
+	  else if (aux::streq(name, "dblist")){
+		  BOOL done = TRUE;
+		  WIN32_FIND_DATAA fd;
+		  char dirpath[255];
+		  sprintf(dirpath, "%s/*.db", __DIR__);
+		  HANDLE hFind = FindFirstFileA(dirpath, &fd);//第一个参数是路径名，可以使用通配符，懂DOS的人应该知道吧！fd存储有文件的信息
+		  std::string ret = "";
+		  while (done)
+		  {
+			  OutputDebugStringA(fd.cFileName);
+			  ret = ret + "<li>" + fd.cFileName + "</li>";
+			  done = FindNextFileA(hFind, &fd);//返回的值如果为0则没有文件要寻了
+		  }
 	  }
 	  else if (aux::streq(name, "showmin")){
 		  /*PBYTE pb; DWORD cb;
@@ -416,24 +431,10 @@ protected:
 		  {
 			  HTMLayoutLoadHtml(hwnd, pb, cb);
 		  }*/
-		  
-		  topdlg mtopdlg(hwnd, WS_SIZEBOX);
-		  mtopdlg.show(IDR_ROOT_TEST);
-
-// 		  BOOL done = TRUE;
-// 		  WIN32_FIND_DATAA fd;
-// 		  char dirpath[255];
-// 		  sprintf(dirpath, "%s/*.db",__DIR__);
-// 		  HANDLE hFind = FindFirstFileA(dirpath, &fd);//第一个参数是路径名，可以使用通配符，懂DOS的人应该知道吧！fd存储有文件的信息
-// 		  std::string ret = "";
-// 		  while (done)
-// 		  {
-// 			  OutputDebugStringA(fd.cFileName);
-// 			  ret = ret + fd.cFileName;
-// 			  done = FindNextFileA(hFind, &fd);//返回的值如果为0则没有文件要寻了
-// 		  }
+// 		  topdlg mtopdlg(hwnd, WS_SIZEBOX);
+// 		  mtopdlg.show(IDR_ROOT_TEST);
+ 		  
 // 		  retval = ret.c_str();
-
 		  //MessageBoxA(NULL, ret.c_str(), "1", 0);
 	  }
 	  

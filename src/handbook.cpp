@@ -4,10 +4,12 @@
 
 #include "stdafx.h"
 #include "handbook.h"
-
+#include "behaviors/behavior_hover.cpp"
+#include "htmlayout_graphin.h"
 
 // Global Variables:
 HINSTANCE hInst;								// current instance
+
 
 
 // Forward declarations of functions included in this code module:

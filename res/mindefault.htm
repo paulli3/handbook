@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -7,7 +7,6 @@
     <style>
         #showrootlist {
             click!:show_root_list("#second","db");
-            assigned!:alert("1");
         }
         #showrootedit {
             click!:show_root_edit("add")=="1" ? show_root_list("#second","db");
@@ -64,7 +63,7 @@
         #second.list:focus div, #second.list:focus, .right:focus, #mainbody:focus, #mainbody td:focus {
             //border: 1px solid red;
         }
-        #second.list{
+        #second.list{ 
           behavior: clickable;
           click!:$1(#var).active="root";
         }
@@ -92,55 +91,112 @@
         #showmin{
           click!:$1(#t):value=showmin();
         }
+        
+        #changedb{
+          //assigned!:$1(#dblist):value=dblist();
+        }
+        body
+        {
+          context-menu: selector(menu#context);
+        }
+        menu {display:none;}
+        menu li:hover{
+          background:red;
+        }
+        
+        .with-popup-menu,#menu
+        {
+          behavior: popup-menu hover-click;
+        }
+        
     </style>
-    <body>
-    
-   <div id="t">
-
-
-   </div>     
+    <body> 
         
     <div id="topbar">
       <widget id="icon" type="button"></widget>
       <div id="caption"></div>
+      <widget id="menu"  type="button" style="font-family:0;"><span style="font-family: marlett;">6</span>
+        <menu class="cool">
+          <li>哈哈</li>
+          <li>Second item
+          <menu>
+              <div>123</div>
+            </menu>
+          </li>
+          <li>What time
+            <menu>
+              <div>123</div>
+            </menu>
+          </li>
+          <li>Fourth item</li>
+        </menu>
+      </widget>
+
+      <widget id="menu"  type="menu" style="font-family:0;">Button with menu
+      <menu .popup id="expandable-image">
+        <li title="hello!">First <font color="red">item</font></li>
+        <li>Second item</li>
+        <li>Third item
+          <menu>
+            <li>First sub-item</li>
+            <li>Second sub-item</li>
+          </menu>
+        </li>
+        <li>Fourth item</li>
+      </menu>
+      </widget>
+      
       <widget id="minimize" type="button">0</widget>
       <widget id="maximize" type="button">1</widget>
       <widget id="close" type="button">r</widget>
+      
     </div>
 
     <div .main>
-            <button id="showmin">showmin</button>
-			<button id="abc"  action="showdialog:dbedit">dbedit</button>
-        	<button id="showrootedit"  action="showdialog:rootedit">rootedit</button>
-			<button id="showrootlist" >showRootList</button>
-			<button id="showmainedit">showmainedit</button>
-            <button id="showmainlist">showmainlist</button>
-            <button id="test">test</button>
+    
+    
+      <div .body>
+          <div #second .list>
+              <div value=239>Zimbabwe</div>
+              <div value=239>Zimbabwe</div>
+          </div>
+        <dl .right>
+            <table cellspacing="0" style="">
+                <tr>
+                    <th width="50%%">LIST</th>
+                      <th width="50%%">MEAN</th>
+              
+                  </tr>	
+                  <tbody id="mainbody">
+                    loading....
+                  </tbody>
+              </table>
+          </dl>
+      </div>
+  </div>
+    
             
-			<input style=" " type="text" value="22222" id="value" />
 			
-            <div .body>
-                <div #second .list>
-                    <div value=239>Zimbabwe</div>
-                    <div value=239>Zimbabwe</div>
-                </div>
-            	<dl .right>
-                	<table cellspacing="0" style="">
-                    	<tr>
-                        	<th width="50%%">LIST</th>
-                            <th width="50%%">MEAN</th>
-                    
-                        </tr>	
-                        <tbody id="mainbody">
-                        	loading....
-                        </tbody>
-                    </table>
-                </dl>
-				
-  
-				
-            </div>
-        </div>
+        <popup> 
+        
+            <menu.context id="context">
+             <li><button id="showmin">showmin</button><li></li>
+             <li><button id="abc"  action="showdialog:dbedit">dbedit</button></li>
+             <li><button id="showrootedit"  action="showdialog:rootedit">rootedit</button></li>
+             <li><button id="showrootlist" >showRootList</button></li>
+             <li><button id="showmainedit">showmainedit</button></li>
+             <li><button id="showmainlist">showmainlist</button></li>
+             <!--<li><button id="test">test</button></li>-->
+             <input style=" " type="text" value="22222" id="value" />
+            <li id="changedb">切换数据库
+                <menu>
+                 <widget id="close" type="button">a</widget>
+      <widget id="close" type="button">b</widget>
+      
+                </menu>  
+            </li>
+          </menu>
+      </popup>
     </body>
 <style>
       @const BORDER_COLOR : red;
@@ -165,7 +221,21 @@
         height: 1*;
         
     }
-		
+		menu{
+      //padding:0;margin:0;
+      width:max-intrinsic;
+      background-color: #666;
+    }
+    .with-popup-menu
+    {
+      
+    }
+     #menu.with-popup-menu:hover
+    {
+      background-color: #FFAFAF;
+    }
+        
+        
 		table{width:100%;}
 		
     html {
@@ -217,6 +287,7 @@
         table tbody tr:hover {
             background: #fff #888 #888 #fff;
         }
+   
     #topbar widget[type="button"] {
         width: 25px;
         height: 25px;
@@ -263,7 +334,7 @@
 
         #topbar #caption {
             color: #FFF;
-            outline: 3px glow red;
+            Outline width:3px, offset:2px, glow;
         }
 
     #bottombar {
