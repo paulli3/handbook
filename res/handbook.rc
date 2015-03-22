@@ -102,6 +102,8 @@ IDR_ROOT_EDIT		HTML					"rootedit.htm"
 IDR_MAIN_EDIT		HTML					"mainedit.htm"
 IDR_VIEW    		HTML					"view.htm"
 IDR_COMMON          HTML                    "common.htm"
+IDR_DB_EDIT          HTML                    "dbedit.htm"
+
 
 
 BG                  PNG                     "bg.png"

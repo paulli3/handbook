@@ -105,9 +105,10 @@ namespace htmlayout
   LRESULT window::on_document_complete() { 
 	  //MessageBoxA(NULL, "1", "333", 0); 
 	  
-		  HELEMENT he=0;
-		  XCALL_ACTION::show_root_list(he, hwnd, "#second", "db");
 		  dom::element root = dom::root_element(hwnd);
+		  HELEMENT he=0;
+		  XCALL_ACTION::show_root_list(he, hwnd, "#second", $D(root.find_first("#var")).get_attribute("dbname"));
+		  
 		  //MessageBoxW(NULL, $D(root.find_first("#value")).get_value().to_string().c_str(),L"1",0);
 		  XCALL_ACTION::show_main_list(he, hwnd, "#mainbody", $D(root.find_first("#var")).get_attribute("rootid"));
 		  return 0;

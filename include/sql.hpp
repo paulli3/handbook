@@ -111,6 +111,10 @@ class sql
         {
 			//if (is_connect)return true;
 			int ret;
+			char g_cmd_path[255];
+			GetModuleFileNameA(NULL, g_cmd_path,255);
+			strrchr(g_cmd_path, ('\\'))[1]=0;//删除文件名，只获得路径
+			dbFile = g_cmd_path + std::string("/db/") + dbFile + ".db";
             ret = sqlite3_open(dbFile.c_str(),&db);
             if( ret ){   
                 fprintf(stderr,"Can't open database: %s/n", sqlite3_errmsg(db));
@@ -118,8 +122,9 @@ class sql
                 MessageBoxA(NULL,"connect db error","error",MB_OK);
                 return false;   
             }
-			if (!is_connect)createTable();
-			is_connect = true;
+			
+			//if (!is_connect)createTable();
+			//is_connect = true;
             //DDebug("connect success;");
             return true;
         }
