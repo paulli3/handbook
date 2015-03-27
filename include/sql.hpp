@@ -39,6 +39,7 @@ class Record
         std::map<std::string,std::string> field;
         void add(const char* fileName,const char * value)
         {
+			if (value == '\0'){ value = "";}
             field[fileName] = value;
         }
         void clear()

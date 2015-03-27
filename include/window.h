@@ -92,6 +92,7 @@ namespace XCALL_ACTION
 		{
 			html = html + "<tr value=\"" + precode->get("id") + "\"><td >" + ToUTF8(aux::a2w(precode->get("title").c_str())) + "</td><td>" + ToUTF8(aux::a2w(precode->get("mean").c_str())) + "</td></tr>";
 		}
+		
 		//MessageBoxA(NULL, html.c_str(), "1", 0);
 		//const unsigned  char *  chtml = 0;
 		const char * chtml1 = html.c_str();
@@ -125,7 +126,7 @@ namespace XCALL_ACTION
 		std::string html = "";
 		while ((precode = PSQL->RESCULT()->getone()))
 		{
-			html = html + precode->get("content");
+			html = html + "<pre>"+precode->get("content")+"</pre>";
 		}
 		topdlg dlg1(hwnd, WS_SIZEBOX);
 		//topdlg mtopdlg(hwnd, WS_SIZEBOX);
