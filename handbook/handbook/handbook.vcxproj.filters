@@ -283,5 +283,8 @@
     <None Include="..\..\res\common.htm">
       <Filter>HTML</Filter>
     </None>
+    <None Include="..\..\res\content.css">
+      <Filter>HTML</Filter>
+    </None>
   </ItemGroup>
 </Project>

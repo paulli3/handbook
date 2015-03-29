@@ -232,6 +232,7 @@
     <None Include="..\..\res\common.htm">
       <DeploymentContent>true</DeploymentContent>
     </None>
+    <None Include="..\..\res\content.css" />
     <None Include="..\..\res\dbedit.htm">
       <DeploymentContent>true</DeploymentContent>
     </None>

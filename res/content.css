@@ -1,3 +1,5 @@
 *{font-family:"微软雅黑";font-size:12px;}
-pre{background: transparent;line-height:30px;border:1px solid #EFEFEF;border-radius: 5px;}
+body{line-height:50px;}
+pre{background: transparent;border:1px solid #EFEFEF;border-radius: 5px;}
+b,strong{background:#ccc;color:blue;padding:10px;}
 code{font-style:italic;}
