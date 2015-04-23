@@ -115,25 +115,10 @@
     <div id="topbar">
       <widget id="icon" type="button"></widget>
       <div id="caption"></div>
-      <widget id="menu"  type="button" style="font-family:0;"><span style="font-family: marlett;">6</span>
-        <menu class="cool">
-          <li>哈哈</li>
-          <li>Second item
-          <menu>
-              <div>123</div>
-            </menu>
-          </li>
-          <li>What time
-            <menu>
-              <div>123</div>
-            </menu>
-          </li>
-          <li>Fourth item</li>
-        </menu>
-      </widget>
+     
 
-      <widget id="menu"  type="menu" style="font-family:0;">Button with menu
-      <menu .popup id="expandable-image">
+      <widget id="minimize" type="menu"><span style="font-family: marlett;">6</span>
+        <menu .popup id="expandable-image">
         <li title="hello!">First <font color="red">item</font></li>
         <li>Second item</li>
         <li>Third item
@@ -143,13 +128,11 @@
           </menu>
         </li>
         <li>Fourth item</li>
-      </menu>
-      </widget>
-      
+     </widget>
+    </button>
       <widget id="minimize" type="button">0</widget>
       <widget id="maximize" type="button">1</widget>
       <widget id="close" type="button">r</widget>
-      
     </div>
 
     <div .main>
@@ -288,13 +271,15 @@
             background: #fff #888 #888 #fff;
         }
    
-    #topbar widget[type="button"] {
+   #topbar widget[type="button"]{
+     font-family: marlett;
+   }
+    #topbar widget[type="button"], #topbar widget[type="menu"] {
         width: 25px;
         height: 25px;
         padding: 0;
         overflow: hidden;
         background-image: none;
-        font-family: marlett;
         font-size: 10pt;
         color: #FFF;
         text-align: center;
@@ -302,11 +287,11 @@
         margin: 0;
         //outline: 2px glow orange 4px;
     }
-        #topbar widget[type="button"]:hover {
+        #topbar widget[type="button"]:hover,#topbar widget[type="menu"]:hover {
             background-color: #666;
         }
         
-         #topbar widget[type="button"]:active {
+         #topbar widget[type="button"]:active,#topbar widget[type="menu"]:active{
             background-color: #333;
         }
 
