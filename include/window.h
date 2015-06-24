@@ -17,17 +17,46 @@
 
 namespace XCALL_ACTION
 {
+	inline std::string ToUTF8(const wchar_t* wideStr)
+	{
+		std::wstring_convert<std::codecvt_utf8<wchar_t>> conv;
+		return conv.to_bytes(wideStr);
+	}
 	inline char * get_dir()
 	{
 		static char g_cmd_path[MAX_PATH];
 		if (g_cmd_path[0] != '\0') return g_cmd_path;
 		memset(g_cmd_path, 0, MAX_PATH*sizeof(char));
-		GetCurrentDirectoryA(MAX_PATH, g_cmd_path);
+		GetModuleFileNameA(NULL, g_cmd_path, MAX_PATH);
+		strrchr(g_cmd_path, ('\\'))[1] = 0;//删除文件名，只获得路径
 		// showDebug((g_cmd_path));
 		return g_cmd_path;
 	}
 
+	inline bool addDB(HELEMENT he, HWND hwnd, json::value db, json::value is_change)
+	{
 
+		sql * PSQL = &sql::getInstance();
+		
+		if (is_change.t){
+			std::string dbfile = ToUTF8(db.get_chars().start);
+			return PSQL->connect(dbfile);
+		}
+		else{
+			topdlg dlg(hwnd);
+			htmlayout::named_values  p;
+			p[TEXT("dbname")] = "";
+			if (dlg.input(IDR_DB_EDIT, p) == IDOK)
+			{
+				//db.to_string().chars().start
+				PSQL->connect(std::string(aux::w2a(p[TEXT("dbname")].to_string().c_str())));
+				//const wchar_t * a = p[TEXT("dbname")].to_string().c_str();
+				return PSQL->createTable();
+			}
+		}
+		return false;
+	}
+	//inline bool list_db(HELEMENT he, HWND hwnd, json::value db)
 	/*void onDocumentCompele()
 	{
 
@@ -46,11 +75,7 @@ namespace XCALL_ACTION
 		return TRUE;
 	}*/
 
-	inline std::string ToUTF8(const wchar_t* wideStr)
-	{
-		std::wstring_convert<std::codecvt_utf8<wchar_t>> conv;
-		return conv.to_bytes(wideStr);
-	}
+	
 	/*main list 列表*/
 	void inline show_main_list(HELEMENT he, HWND hwnd, json::value id, json::value rootid)
 	{
@@ -67,6 +92,7 @@ namespace XCALL_ACTION
 		{
 			html = html + "<tr value=\"" + precode->get("id") + "\"><td >" + ToUTF8(aux::a2w(precode->get("title").c_str())) + "</td><td>" + ToUTF8(aux::a2w(precode->get("mean").c_str())) + "</td></tr>";
 		}
+		
 		//MessageBoxA(NULL, html.c_str(), "1", 0);
 		//const unsigned  char *  chtml = 0;
 		const char * chtml1 = html.c_str();
@@ -90,7 +116,7 @@ namespace XCALL_ACTION
 	{
 		using namespace std;
 		sql * PSQL = &sql::getInstance();
-		PSQL->createTable();
+		//PSQL->createTable();
 		Record * precode;
 
 		string s_id = aux::w2a(id.to_string().c_str());
@@ -100,7 +126,7 @@ namespace XCALL_ACTION
 		std::string html = "";
 		while ((precode = PSQL->RESCULT()->getone()))
 		{
-			html = html + precode->get("content");
+			html = html + "<pre>"+precode->get("content")+"</pre>";
 		}
 		topdlg dlg1(hwnd, WS_SIZEBOX);
 		//topdlg mtopdlg(hwnd, WS_SIZEBOX);
@@ -129,7 +155,8 @@ namespace XCALL_ACTION
 	void inline show_root_list(HELEMENT he,HWND hwnd, json::value id, json::value db)
 	{
 		sql * PSQL = &sql::getInstance();
-		PSQL->connect("db");
+		PSQL->connect(std::string(aux::w2a(db.to_string().c_str())));
+
 		Record * precode;
 		PSQL->query("SELECT * FROM root order by id desc");
 
@@ -177,7 +204,7 @@ namespace XCALL_ACTION
 		if (dlg1.input(IDR_ROOT_EDIT, p) == IDOK)
 		{
 			sql * PSQL = &sql::getInstance();
-			PSQL->connect("db");
+			//PSQL->connect("db");
 			std::string sval = std::string(aux::w2a(p[L"rootval"].to_string().c_str()));
 			std::string sql = "";
 			std::wstring a = p[TEXT("rootid")].to_string().c_str();
@@ -208,7 +235,7 @@ namespace XCALL_ACTION
 	{
 		using namespace std;
 		sql * PSQL = &sql::getInstance();
-		PSQL->connect("db");
+		//PSQL->connect("db");
 		string sql;
 		sql = "delete FROM main where id=" + std::string(aux::w2a(id.to_string().c_str()));
 		return PSQL->query(sql);
@@ -217,7 +244,7 @@ namespace XCALL_ACTION
 	{
 		using namespace std;
 		sql * PSQL = &sql::getInstance();
-		PSQL->connect("db");
+		//PSQL->connect("db");
 		string sql;
 		const char * rootid = aux::w2a(id.to_string().c_str());
 		sql = "delete FROM main where root_id=" + std::string(rootid);
@@ -233,7 +260,7 @@ namespace XCALL_ACTION
 		//::htmlayout::window * a = reinterpret_cast<::htmlayout::window *>(lp);
 		//htmlayout::dom::element btn = he;
 		sql * PSQL = &sql::getInstance();
-		PSQL->connect("db");
+		//PSQL->connect("db");
 		topdlg dlg1(hwnd, WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_SIZEBOX );
 		string sql;
 		const char * _id = aux::w2a(id.to_string().c_str());
@@ -412,17 +439,32 @@ protected:
 		  retval = w;
 	  }
 	  else if (aux::streq(name, "dblist")){
-		  BOOL done = TRUE;
-		  WIN32_FIND_DATAA fd;
-		  char dirpath[255];
-		  sprintf(dirpath, "%s/*.db", __DIR__);
-		  HANDLE hFind = FindFirstFileA(dirpath, &fd);//第一个参数是路径名，可以使用通配符，懂DOS的人应该知道吧！fd存储有文件的信息
-		  std::string ret = "";
-		  while (done)
+		  static std::string html = "";
+		  if (html.length()){
+
+		  }
+		  else{
+			  BOOL done = TRUE;
+			  WIN32_FIND_DATAA fd;
+			  char dirpath[255];
+			  sprintf(dirpath, "%sdb/*.db", __DIR__);
+			  HANDLE hFind = FindFirstFileA(dirpath, &fd);//第一个参数是路径名，可以使用通配符，懂DOS的人应该知道吧！fd存储有文件的信息			
+			  while (done)
+			  {
+				  OutputDebugStringA(fd.cFileName);
+				  html = html + "<li>" + std::string(fd.cFileName).substr(0, strlen(fd.cFileName) - 3) + "</li>";
+				  done = FindNextFileA(hFind, &fd);//返回的值如果为0则没有文件要寻了
+			  }
+			  htmlayout::dom::element root = htmlayout::dom::root_element(hwnd);
+			  HTMLayoutSetElementHtml(root.find_first("#dblist"), (LPCBYTE)XCALL_ACTION::ToUTF8(aux::a2w(html.c_str())).c_str(), html.size(), SIH_REPLACE_CONTENT);
+		  }		  
+		  
+		  retval = "1"	;
+	  }
+	  else if (aux::streq(name, "dbadd")){
+		  if (XCALL_ACTION::addDB(he, hwnd, argv[0], argv[1]))
 		  {
-			  OutputDebugStringA(fd.cFileName);
-			  ret = ret + "<li>" + fd.cFileName + "</li>";
-			  done = FindNextFileA(hFind, &fd);//返回的值如果为0则没有文件要寻了
+			  retval = "1";
 		  }
 	  }
 	  else if (aux::streq(name, "showmin")){

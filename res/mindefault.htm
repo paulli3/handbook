@@ -1,8 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta #var rootid="add" mainid="add" dbname="db" active="root"/><!--root or main-->
+    <meta #var rootid="add" mainid="add" dbname="db" active="root" intidblist=0/><!--root or main-->
     </head>
     <style>
         #showrootlist {
@@ -18,7 +18,7 @@
             key-code()=='^A' ? (
               focus=="root" ? (
                 show_root_edit("add")=="1" ? (
-                  show_root_list("#second","db"), 
+                  show_root_list("#second",$1(#var).dbname), 
                   rootid=$1(#second.list div[selected=1]).value,
                   show_main_list("#mainbody",rootid)
                 ),
@@ -93,28 +93,43 @@
         }
         
         #changedb{
-          //assigned!:$1(#dblist):value=dblist();
+        	  assigned!:dblist();
         }
         body
         {
           context-menu: selector(menu#context);
         }
-        menu {display:none;}
-        menu li:hover{
-          background:red;
-        }
+        
         
         .with-popup-menu,#menu
         {
           behavior: popup-menu hover-click;
         }
         
+
+	#changedb .adddb{
+		click!:dbadd(1)== "1" ? (
+				$1(#var).dbname = self:value,
+				//show_root_list("#second",$1(#var).dbname), 
+                //rootid=$1(#second.list div[selected=1]).value,
+                //show_main_list("#mainbody",rootid)
+			);
+	}
+	#dblist li{
+		click!:dbadd(self:value,"1") == "1" ? (
+				$1(#var).dbname = self:value,
+				show_root_list("#second",$1(#var).dbname), 
+                rootid=$1(#second.list div[selected=1]).value,
+                show_main_list("#mainbody",rootid)
+			);
+	}
     </style>
     <body> 
         
     <div id="topbar">
       <widget id="icon" type="button"></widget>
       <div id="caption"></div>
+<<<<<<< HEAD
      
 
       <widget id="minimize" type="menu"><span style="font-family: marlett;">6</span>
@@ -123,20 +138,33 @@
         <li>Second item</li>
         <li>Third item
           <menu>
+=======
+
+      <widget type="menu" style="font-family:0;"><span style="font-family: marlett;">6</span>
+      <menu .popup   id="changedb">
+        <li class="adddb">添加数据库</li>
+        <li>切换数据库
+          <menu id="dblist">
+>>>>>>> c6cb88895f40de79fd2b9e0528b4e121c351b9bb
             <li>First sub-item</li>
             <li>Second sub-item</li>
           </menu>
         </li>
+<<<<<<< HEAD
         <li>Fourth item</li>
      </widget>
     </button>
+=======
+      </menu>
+      </widget>
+      
+>>>>>>> c6cb88895f40de79fd2b9e0528b4e121c351b9bb
       <widget id="minimize" type="button">0</widget>
       <widget id="maximize" type="button">1</widget>
       <widget id="close" type="button">r</widget>
     </div>
 
     <div .main>
-    
     
       <div .body>
           <div #second .list>
@@ -151,7 +179,7 @@
               
                   </tr>	
                   <tbody id="mainbody">
-                    loading....
+                 
                   </tbody>
               </table>
           </dl>
@@ -191,7 +219,7 @@
             font-weight: normal;
         }
     .main {
-        padding: 5px 10px;
+        padding: 0px 10px;
         height: 100%%;
         background: #DBE2E8;
         margin: 0px 3px 3px;
@@ -204,22 +232,25 @@
         height: 1*;
         
     }
-		menu{
-      //padding:0;margin:0;
-      width:max-intrinsic;
-      background-color: #666;
+    menu {display:none;}
+    menu li:hover{
+      background:#EFEFEF;
+      color:#000;
     }
-    .with-popup-menu
-    {
-      
+	menu{
+      width:max-intrinsic;
+      background-color:#FFFFFF;
+    }
+    menu li{
+    	padding:2px 15px 2px 5px;
     }
      #menu.with-popup-menu:hover
     {
-      background-color: #FFAFAF;
+      background-color: #efefef;
     }
         
         
-		table{width:100%;}
+	table{width:100%;}
 		
     html {
         font: 10pt Verdana;
@@ -271,10 +302,14 @@
             background: #fff #888 #888 #fff;
         }
    
+<<<<<<< HEAD
    #topbar widget[type="button"]{
      font-family: marlett;
    }
     #topbar widget[type="button"], #topbar widget[type="menu"] {
+=======
+    #topbar widget[type="button"],#topbar widget[type="menu"] {
+>>>>>>> c6cb88895f40de79fd2b9e0528b4e121c351b9bb
         width: 25px;
         height: 25px;
         padding: 0;
@@ -291,7 +326,11 @@
             background-color: #666;
         }
         
+<<<<<<< HEAD
          #topbar widget[type="button"]:active,#topbar widget[type="menu"]:active{
+=======
+         #topbar widget[type="button"]:active,#topbar widget[type="menu"]:active {
+>>>>>>> c6cb88895f40de79fd2b9e0528b4e121c351b9bb
             background-color: #333;
         }
 

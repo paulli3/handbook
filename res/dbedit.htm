@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 	<head>
     	<title>DBEDIT</title>
     	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
@@ -13,13 +13,15 @@
 			height:300px;				
 		}
 		html{
-			behavior:accesskeys tests;
+			
 		}
         </style>
     </head>
 	<body>
     	<div .main>
-        	<label for="author"><span class="input-prepend" name="aaa">请输入DB名称：</span></label><input id="value" type="text" mtype="dbedit" value="" accesskey="^S" action="">
+<button name="OK" role="default-button" style="display:none"> OK </button>
+<button name="CANCEL" role="cancel-button" style="display:none"> CANCEL </button>
+        	<label for="author"><span class="input-prepend" >请输入DB名称：</span></label><input id="value" type="text" name="dbname" value="" >
         </div>    
     </body>
 </html>
